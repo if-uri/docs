@@ -38,8 +38,11 @@ urirun-v2 --help
 Examples:
 
 ```python
-from urirun import v2
-from urirun.v2 import uri_command
+import urirun
+
+@urirun.command("demo://host/example/query/run")
+def run_example(target: str):
+    return ["demo", "{target}"]
 ```
 
 ```js
@@ -64,7 +67,7 @@ git@github.com:tellmesh/urirun.git
 ```
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.11#subdirectory=adapters/python"
+pip install "git+https://github.com/tellmesh/urirun.git@v0.3.12#subdirectory=adapters/python"
 npm install github:tellmesh/urirun
 ```
 
