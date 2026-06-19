@@ -53,7 +53,7 @@ def page(slug):
 <nav><a href="https://ifuri.com/">ifuri.com</a><a href="https://examples.ifuri.com/">Examples</a><a href="https://roadmap.ifuri.com/">Roadmap</a><a href="https://github.com/if-uri/docs">GitHub</a></nav></header>
 <div class="wrap"><aside>{nav}</aside><main>{body}</main></div>
 <footer>ifURI docs · <a href="https://ifuri.com/">ifuri.com</a></footer>
-<script src="copy.js"></script></body></html>"""
+<script src="copy.js"></script><script src="https://ifuri.com/assets/ifuri-ecobar.js" defer></script></body></html>"""
 if OUT.exists():shutil.rmtree(OUT)
 OUT.mkdir(parents=True)
 for s in slugs:(OUT/f"{s}.html").write_text(page(s),encoding="utf-8")
