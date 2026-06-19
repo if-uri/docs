@@ -27,7 +27,7 @@ agent tool projection.
 Use v2 for new projects:
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.5#subdirectory=adapters/python"
+pip install "git+https://github.com/tellmesh/urirun.git@v0.3.11#subdirectory=adapters/python"
 urirun scan ./project --out generated/bindings.v2.json --registry-out generated/registry.json
 urirun list generated/registry.json
 ```
