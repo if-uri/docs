@@ -142,7 +142,7 @@ Because the contract is constant, the registry feeds more than MCP:
 
 ## Try it
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@main#subdirectory=adapters/python"
+pip install "git+https://github.com/tellmesh/urirun.git@v0.3.5#subdirectory=adapters/python"
 ifuri-app urirun-scan ./project --registry-out generated/registry.json
 ifuri-app urirun-mcp tools --registry generated/registry.json   # what a client sees
 ifuri-app urirun-mcp serve --registry generated/registry.json   # connect Claude here
