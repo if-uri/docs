@@ -73,6 +73,44 @@ urirun run 'httpcheck://host/http/query/status' registry.json \
 The connector was verified from a clean virtualenv by installing through the
 public hub and executing the URI through `urirun run`.
 
+## Docker verification
+
+Every executable connector should have a Docker smoke test that proves it works
+inside a real network, not only on the developer host. The current pattern is:
+
+- one target service that exposes a resource, for example nginx,
+- one tester service that installs `urirun` and the connector,
+- URI execution through `urirun run`,
+- MCP tools projection,
+- A2A card projection.
+
+For the HTTP Check connector:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-http-check.git
+cd urirun-connector-http-check
+make docker-test
+```
+
+For the full host/node connector scenario:
+
+```bash
+git clone https://github.com/if-uri/examples.git
+cd examples/12-full_e2e_connect_lab
+make test
+```
+
+The full scenario starts `host`, `pc1`, `pc2`, `ifuri-site` and
+`registry-runtime` containers. It installs available connectors from
+`connect.ifuri.com`, executes URI routes, checks host-node communication, serves
+the same registry over gRPC, and verifies MCP tools plus A2A skills.
+
+Current Docker coverage:
+
+- available and tested: `planfile`, `sqlite-context`, `domain-monitor`,
+  `http-check`, `namecheap-dns`, `grpc-transport`,
+- planned and skipped until packages exist: `mqtt`, `browser-control`.
+
 ## Connector package shape
 
 A Python connector should normally include:
@@ -82,6 +120,8 @@ A Python connector should normally include:
 - `urirun.bindings.v2.json` or a function that returns equivalent bindings,
 - a small CLI for direct shell use,
 - tests that prove the package works without the hub.
+- a Docker smoke environment that proves network execution and MCP/A2A
+  projection.
 
 Example functions exposed by a package:
 
