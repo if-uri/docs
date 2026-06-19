@@ -13,7 +13,7 @@ The installed CLI and Python import namespace are both `urirun`.
 The connector hub can install `urirun` plus selected connector packages:
 
 ```bash
-curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check,time-tools' | bash
 ```
 
 For a virtualenv:
@@ -84,4 +84,23 @@ urirun run 'httpcheck://host/http/query/status' registry.json \
   --payload '{"url":"https://ifuri.com","expectStatus":200,"timeout":10}' \
   --execute \
   --allow 'httpcheck://host/*'
+```
+
+## Run the Time Tools connector
+
+After installing `time-tools`, build its bindings and execute the URI:
+
+```bash
+python - <<'PY' > bindings.json
+import json
+from urirun_connector_time_tools import urirun_bindings
+print(json.dumps(urirun_bindings(), indent=2))
+PY
+
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'time://host/clock/query/now' registry.json \
+  --payload '{"timezone":"UTC","output":"iso"}' \
+  --execute \
+  --allow 'time://host/*'
 ```

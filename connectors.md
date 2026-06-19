@@ -24,7 +24,7 @@ curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
 Install multiple connectors:
 
 ```bash
-curl -fsSL 'https://connect.ifuri.com/install?connectors=planfile,http-check,namecheap-dns' | bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=planfile,http-check,time-tools,namecheap-dns' | bash
 ```
 
 When using a virtualenv, run the installer with that Python binary:
@@ -39,7 +39,7 @@ PATH="$PWD/.venv/bin:$PATH" urirun-http-check status https://ifuri.com --expect-
 The `PATH` line matters for command bindings such as `argv-template`, because
 `urirun` must be able to find console scripts installed by connector packages.
 
-## Tested HTTP Check connector
+## Tested external connectors
 
 The first external connector package is:
 
@@ -73,6 +73,37 @@ urirun run 'httpcheck://host/http/query/status' registry.json \
 The connector was verified from a clean virtualenv by installing through the
 public hub and executing the URI through `urirun run`.
 
+The second external connector package is:
+
+- package repo: [if-uri/urirun-connector-time-tools](https://github.com/if-uri/urirun-connector-time-tools),
+- hub page: [connect.ifuri.com/connectors/time-tools](https://connect.ifuri.com/connectors/time-tools),
+- manifest: [connect.ifuri.com/connectors/time-tools.json](https://connect.ifuri.com/connectors/time-tools.json).
+
+It exposes:
+
+```text
+time://host/clock/query/now
+```
+
+Install and run it:
+
+```bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=time-tools' | bash
+
+python - <<'PY' > bindings.json
+import json
+from urirun_connector_time_tools import urirun_bindings
+print(json.dumps(urirun_bindings(), indent=2))
+PY
+
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'time://host/clock/query/now' registry.json \
+  --payload '{"timezone":"UTC","output":"iso"}' \
+  --execute \
+  --allow 'time://host/*'
+```
+
 ## Docker verification
 
 Every executable connector should have a Docker smoke test that proves it works
@@ -92,6 +123,14 @@ cd urirun-connector-http-check
 make docker-test
 ```
 
+For the Time Tools connector:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-time-tools.git
+cd urirun-connector-time-tools
+make docker-test
+```
+
 For the full host/node connector scenario:
 
 ```bash
@@ -108,7 +147,7 @@ the same registry over gRPC, and verifies MCP tools plus A2A skills.
 Current Docker coverage:
 
 - available and tested: `planfile`, `sqlite-context`, `domain-monitor`,
-  `http-check`, `namecheap-dns`, `grpc-transport`,
+  `http-check`, `time-tools`, `namecheap-dns`, `grpc-transport`,
 - planned and skipped until packages exist: `mqtt`, `browser-control`.
 
 ## Connector package shape
