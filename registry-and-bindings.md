@@ -68,3 +68,35 @@ Generated bindings should be deterministic:
 - generated files should be written to `generated/` or `.urirun/`, not edited
   as primary source
 - source artifacts remain the source of truth when using scanner adoption
+
+## Connector registry entries
+
+Connector packages can ship their own bindings and publish catalog metadata
+through [connect.ifuri.com](https://connect.ifuri.com).
+
+For example, the HTTP Check connector exposes:
+
+```text
+httpcheck://host/http/query/status
+```
+
+The package returns a normal v2 binding document:
+
+```bash
+python - <<'PY' > bindings.json
+import json
+from urirun_connector_http_check import urirun_bindings
+print(json.dumps(urirun_bindings(), indent=2))
+PY
+```
+
+From there the flow is the same as any local binding:
+
+```bash
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun list registry.json
+```
+
+The hub adds discoverability, install commands and machine-readable metadata,
+but the runtime still dispatches through the compiled registry.

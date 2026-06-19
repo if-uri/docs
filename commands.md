@@ -29,6 +29,38 @@ urirun add-command 'util://local/echo/message' \
   --out urirun.bindings.v2.json
 ```
 
+## Install connectors from the hub
+
+Install a verified connector package:
+
+```bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
+```
+
+Inspect the connector directly:
+
+```bash
+urirun-http-check manifest
+urirun-http-check bindings
+urirun-http-check status https://ifuri.com --expect-status 200
+```
+
+Compile and run its URI:
+
+```bash
+python - <<'PY' > bindings.json
+import json
+from urirun_connector_http_check import urirun_bindings
+print(json.dumps(urirun_bindings(), indent=2))
+PY
+
+urirun compile bindings.json --out registry.json
+urirun run 'httpcheck://host/http/query/status' registry.json \
+  --payload '{"url":"https://ifuri.com","expectStatus":200}' \
+  --execute \
+  --allow 'httpcheck://host/*'
+```
+
 ## Versioned commands
 
 ```bash

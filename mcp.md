@@ -1,4 +1,6 @@
-# MCP & A2A — how an LLM client calls ifURI URI routes as tools
+# MCP and A2A
+
+How an LLM client calls ifURI URI routes as tools.
 
 > **In one sentence:** ifURI turns your project's actions into URI routes, the
 > [urirun](https://github.com/tellmesh/urirun) runtime compiles them into a registry,

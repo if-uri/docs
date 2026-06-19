@@ -3,7 +3,7 @@
 import os, re, html, sys, shutil, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=pathlib.Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/"_site"
-ORDER=["index","getting-started","naming","commands","registry-and-bindings","transports","mcp","logo","roadmap"]
+ORDER=["index","getting-started","naming","commands","registry-and-bindings","connectors","transports","mcp","logo","roadmap"]
 def md(text):
     out=[];i=0;lines=text.replace("\r","").split("\n");n=len(lines)
     def inl(s):
@@ -20,7 +20,11 @@ def md(text):
         if m:l=len(m.group(1));out.append(f"<h{l}>{inl(m.group(2))}</h{l}>");i+=1;continue
         if re.match(r'\s*[-*]\s+',ln):
             it=[]
-            while i<n and re.match(r'\s*[-*]\s+',lines[i]):it.append(inl(re.sub(r'\s*[-*]\s+','',lines[i],count=1)));i+=1
+            while i<n and re.match(r'\s*[-*]\s+',lines[i]):
+                item=[re.sub(r'\s*[-*]\s+','',lines[i],count=1)];i+=1
+                while i<n and lines[i].strip() and not re.match(r'(#{1,6}\s|```|\s*[-*]\s)',lines[i]):
+                    item.append(lines[i].strip());i+=1
+                it.append(inl(" ".join(item)))
             out.append("<ul>"+"".join(f"<li>{x}</li>" for x in it)+"</ul>");continue
         if ln.strip()=="":i+=1;continue
         p=[ln];i+=1

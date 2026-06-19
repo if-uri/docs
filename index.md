@@ -13,8 +13,12 @@ agent tool projection.
 - [Commands](commands.md) - CLI commands and versioned entry points.
 - [Registry and bindings](registry-and-bindings.md) - how bindings become a
   dispatchable registry.
+- [Connectors](connectors.md) - installable URI packages, the public hub,
+  catalog manifests, package shape and trust model.
 - [Transports](transports.md) - local functions, shell, Docker, HTTP, gRPC,
   browser, MCP, and A2A.
+- [MCP and A2A](mcp.md) - how the same registry becomes LLM-callable tools and
+  agent cards.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
 - [Roadmap](roadmap.md) - practical TODO list for making the tool easier.
 
@@ -30,3 +34,9 @@ urirun list generated/registry.json
 
 Keep v1 only for older examples that depend on the first parameter-binding
 contract.
+
+For ready-made capabilities, install connector packages from the public hub:
+
+```bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
+```

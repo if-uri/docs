@@ -8,6 +8,25 @@ pip install "git+https://github.com/tellmesh/urirun.git@main#subdirectory=adapte
 
 The installed CLI and Python import namespace are both `urirun`.
 
+## Install a ready connector
+
+The connector hub can install `urirun` plus selected connector packages:
+
+```bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
+```
+
+For a virtualenv:
+
+```bash
+python3 -m venv .venv
+PYTHON_BIN="$PWD/.venv/bin/python" \
+  bash -c "curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash"
+PATH="$PWD/.venv/bin:$PATH" urirun-http-check status https://ifuri.com --expect-status 200
+```
+
+More connector details: [Connectors](connectors.md).
+
 ## Generate a registry
 
 Scan a project and compile a runtime registry in one command:
@@ -47,3 +66,22 @@ urirun run 'cli://local/git/status' \
 ```
 
 Keep shell templates behind an explicit policy with `allowShellTemplates: true`.
+
+## Run the HTTP Check connector
+
+After installing `http-check`, build its bindings and execute the URI:
+
+```bash
+python - <<'PY' > bindings.json
+import json
+from urirun_connector_http_check import urirun_bindings
+print(json.dumps(urirun_bindings(), indent=2))
+PY
+
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'httpcheck://host/http/query/status' registry.json \
+  --payload '{"url":"https://ifuri.com","expectStatus":200,"timeout":10}' \
+  --execute \
+  --allow 'httpcheck://host/*'
+```

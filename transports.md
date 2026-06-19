@@ -30,6 +30,18 @@ URI forms, and calls a Python backend through `POST /api/run`.
 The backend can expose logs, recent calls, MCP tools, and A2A cards from the same
 registry, so frontend actions use the same URI names as backend actions.
 
+The connector hub also has HTTP-oriented packages. The verified HTTP Check
+connector installs from [connect.ifuri.com/connectors/http-check](https://connect.ifuri.com/connectors/http-check)
+and exposes:
+
+```text
+httpcheck://host/http/query/status
+```
+
+That route can be called from shell, an ifuri host process, an MCP client or a
+flow orchestrator because the transport-specific implementation remains behind
+the registry adapter.
+
 ## gRPC
 
 `urirun.v2_grpc` provides a small RPC surface for route listing, unary calls,
@@ -48,3 +60,5 @@ Because v2 bindings include JSON Schema, the registry can be projected into:
 - A2A agent card skills
 
 Execution still goes through the same `urirun` policy gate.
+
+See [MCP and A2A](mcp.md) for the LLM-facing projection.
