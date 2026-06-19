@@ -10,7 +10,7 @@ How an LLM client calls ifURI URI routes as tools.
 
 Sites: [ifuri.com](https://ifuri.com) · [docs.ifuri.com](https://docs.ifuri.com) ·
 [examples.ifuri.com](https://examples.ifuri.com) · [get.ifuri.com](https://get.ifuri.com) ·
-[connect.ifuri.com](https://connect.ifuri.com) · [logo.ifuri.com](https://logo.ifuri.com)
+[connect.ifuri.com](https://connect.ifuri.com) · [logo.ifuri.com](https://logo.ifuri.com) · [roadmap.ifuri.com](https://roadmap.ifuri.com)
 Repos: [if-uri/app](https://github.com/if-uri/app) · [tellmesh/urirun](https://github.com/tellmesh/urirun)
 
 ## The contract

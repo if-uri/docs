@@ -50,7 +50,7 @@ def page(slug):
 <link rel="icon" href="https://ifuri.com/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 </head><body>
 <header><a class="brand" href="index.html">ifURI <span>docs</span></a>
-<nav><a href="https://ifuri.com/">ifuri.com</a><a href="https://examples.ifuri.com/">Examples</a><a href="https://github.com/if-uri/docs">GitHub</a></nav></header>
+<nav><a href="https://ifuri.com/">ifuri.com</a><a href="https://examples.ifuri.com/">Examples</a><a href="https://roadmap.ifuri.com/">Roadmap</a><a href="https://github.com/if-uri/docs">GitHub</a></nav></header>
 <div class="wrap"><aside>{nav}</aside><main>{body}</main></div>
 <footer>ifURI docs · <a href="https://ifuri.com/">ifuri.com</a></footer>
 <script src="copy.js"></script></body></html>"""
