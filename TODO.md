@@ -17,7 +17,11 @@
 
 ## Cross-repository hygiene
 
-- [ ] Link every connector README back to the hub page and docs.
-- [ ] Keep `connect.ifuri.com/llms.txt` and docs connector pages in sync.
-- [ ] Add a release checklist for runtime, connector packages, examples and
-      app docs.
+- [x] Link every connector README back to the hub page and docs.
+      (Related-projects section with hub page + docs.ifuri.com links across all
+      six `urirun-connector-*` repos)
+- [x] Keep `connect.ifuri.com/llms.txt` and docs connector pages in sync.
+      (`connectors.md` catalog status now mirrors the 13 hub manifests, 8
+      available / 5 planned, and points to connectors.json/llms.txt as canonical)
+- [x] Add a release checklist for runtime, connector packages, examples and
+      app docs. (`release-checklist.md`)

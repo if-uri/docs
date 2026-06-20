@@ -29,6 +29,8 @@ agent tool projection.
   inside noVNC desktops across the LAN.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
 - [Roadmap](roadmap.md) - practical TODO list for making the tool easier.
+- [Release checklist](release-checklist.md) - coordinated release steps across
+  runtime, connectors, examples and app docs.
 
 ## Current recommendation
 
