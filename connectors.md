@@ -167,7 +167,7 @@ flow://host/daily/command/run
 Mock DNS read example:
 
 ```bash
-pip install 'git+https://github.com/if-uri/urirun-connector-domain-monitor.git@v0.2.0'
+pip install 'git+https://github.com/if-uri/urirun-connector-domain-monitor.git@v0.2.1'
 
 urirun-domain-monitor bindings > bindings.json
 urirun validate bindings.json

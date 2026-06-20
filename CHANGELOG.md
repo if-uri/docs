@@ -15,6 +15,8 @@
   Context usage examples and Docker smoke commands.
 - Split Domain Monitor DNS reads from provider-specific Namecheap DNS mutation
   routes in the connector guide.
+- Update Domain Monitor install snippets to `v0.2.1`, the self-contained
+  connector runtime release.
 
 ### Changed
 - Link the documentation index and README to the work summary and related
