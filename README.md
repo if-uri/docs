@@ -31,6 +31,7 @@ is now the public documentation home for the ifURI organization.
 - `github.com/if-uri/urirun-connector-browser-control`
 - `github.com/if-uri/urirun-connector-planfile`
 - `github.com/if-uri/urirun-connector-domain-monitor`
+- `github.com/if-uri/urirun-connector-namecheap-dns`
 - `github.com/if-uri/urirun-connector-sqlite-context`
 - `github.com/if-uri/examples`
 - `github.com/if-uri/roadmap`

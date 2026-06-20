@@ -48,7 +48,8 @@ The currently tested external connector packages are:
 | HTTP Check | [if-uri/urirun-connector-http-check](https://github.com/if-uri/urirun-connector-http-check) | `httpcheck://host/http/query/status` |
 | Time Tools | [if-uri/urirun-connector-time-tools](https://github.com/if-uri/urirun-connector-time-tools) | `time://host/clock/query/now` |
 | Planfile | [if-uri/urirun-connector-planfile](https://github.com/if-uri/urirun-connector-planfile) | `task://host/ticket/command/create`, `planfile://host/dsl/command/run` |
-| Domain Monitor | [if-uri/urirun-connector-domain-monitor](https://github.com/if-uri/urirun-connector-domain-monitor) | `monitor://host/http/query/status`, `dns://host/records/command/plan`, `flow://host/domain/command/check` |
+| Domain Monitor | [if-uri/urirun-connector-domain-monitor](https://github.com/if-uri/urirun-connector-domain-monitor) | `monitor://host/http/query/status`, `monitor://host/dns/query/current`, `flow://host/domain/command/check` |
+| Namecheap DNS | [if-uri/urirun-connector-namecheap-dns](https://github.com/if-uri/urirun-connector-namecheap-dns) | `dns://host/records/command/plan`, `dns://host/records/command/backup`, `dns://host/records/command/apply` |
 | SQLite Context | [if-uri/urirun-connector-sqlite-context](https://github.com/if-uri/urirun-connector-sqlite-context) | `data://host/record/command/upsert`, `log://host/logs/query/recent` |
 
 Each package exposes a hub page and a machine-readable manifest:
@@ -57,6 +58,7 @@ Each package exposes a hub page and a machine-readable manifest:
 - [connect.ifuri.com/connectors/time-tools](https://connect.ifuri.com/connectors/time-tools),
 - [connect.ifuri.com/connectors/planfile](https://connect.ifuri.com/connectors/planfile),
 - [connect.ifuri.com/connectors/domain-monitor](https://connect.ifuri.com/connectors/domain-monitor),
+- [connect.ifuri.com/connectors/namecheap-dns](https://connect.ifuri.com/connectors/namecheap-dns),
 - [connect.ifuri.com/connectors/sqlite-context](https://connect.ifuri.com/connectors/sqlite-context).
 
 ### HTTP Check
@@ -150,28 +152,57 @@ urirun run 'task://host/ticket/command/create' registry.json \
 
 ### Domain Monitor
 
-Domain Monitor moves HTTP status checks, DNS planning, Namecheap-safe DNS flows,
-screenshots and daily domain-check flows out of the `urirun` core:
+Domain Monitor moves HTTP status checks, DNS reads, screenshot artifacts and
+daily domain-check flows out of the `urirun` core:
 
 ```text
 monitor://host/http/query/status
+monitor://host/dns/query/current
+monitor://host/dns/query/expected
+browser://host/page/command/screenshot
+flow://host/domain/command/check
+flow://host/daily/command/run
+```
+
+Mock DNS read example:
+
+```bash
+pip install 'git+https://github.com/if-uri/urirun-connector-domain-monitor.git@v0.2.0'
+
+urirun-domain-monitor bindings > bindings.json
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'monitor://host/dns/query/current' registry.json \
+  --payload '{"domain":"example.com","current_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.10\"}]"}' \
+  --execute \
+  --allow 'monitor://host/*'
+```
+
+Provider-specific DNS changes are intentionally separate. Use Namecheap DNS for
+host-record planning, backup and apply routes.
+
+### Namecheap DNS
+
+Namecheap DNS owns the provider-specific `dns://` routes:
+
+```text
+dns://host/records/query/current
+dns://host/records/query/expected
 dns://host/records/command/plan
 dns://host/records/command/backup
 dns://host/records/command/apply
-flow://host/domain/command/check
-flow://host/daily/command/run
 ```
 
 Safe mock DNS planning example:
 
 ```bash
-pip install 'git+https://github.com/if-uri/urirun-connector-domain-monitor.git@v0.1.0'
+pip install 'git+https://github.com/if-uri/urirun-connector-namecheap-dns.git@v0.1.0'
 
-urirun-domain-monitor bindings > bindings.json
+urirun-namecheap-dns bindings > bindings.json
 urirun validate bindings.json
 urirun compile bindings.json --out registry.json
 urirun run 'dns://host/records/command/plan' registry.json \
-  --payload '{"domain":"example.com","provider":"namecheap","current_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.10\"}]","desired_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.11\"}]"}' \
+  --payload '{"domain":"example.com","current_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.10\"}]","desired_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.11\"}]"}' \
   --execute \
   --allow 'dns://host/*'
 ```
@@ -244,6 +275,14 @@ For Domain Monitor:
 ```bash
 git clone https://github.com/if-uri/urirun-connector-domain-monitor.git
 cd urirun-connector-domain-monitor
+make docker-test
+```
+
+For Namecheap DNS:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-namecheap-dns.git
+cd urirun-connector-namecheap-dns
 make docker-test
 ```
 

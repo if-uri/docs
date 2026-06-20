@@ -13,6 +13,8 @@
   packages in the cross-repository summary and README.
 - Expand the connector guide with tested Planfile, Domain Monitor and SQLite
   Context usage examples and Docker smoke commands.
+- Split Domain Monitor DNS reads from provider-specific Namecheap DNS mutation
+  routes in the connector guide.
 
 ### Changed
 - Link the documentation index and README to the work summary and related
