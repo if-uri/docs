@@ -24,6 +24,15 @@ The fastest path is the installer from `get.ifuri.com`, which creates a local
 curl -fsSL https://get.ifuri.com/node.sh | bash -s -- --name laptop --port 8765 --background
 ```
 
+Add connector packages at bootstrap with `--connectors http-check,time-tools`.
+
+Install the host role (the machine that drives nodes) the same way, and register
+nodes inline:
+
+```bash
+curl -fsSL https://get.ifuri.com/host.sh | bash -s -- --name studio --add-node laptop=http://NODE_IP:8765
+```
+
 For the desktop operator experience, use the ifURI app instead:
 
 ```bash
