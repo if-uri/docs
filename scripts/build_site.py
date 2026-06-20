@@ -21,17 +21,24 @@ def md(text):
             i+=1;out.append("<pre><code>"+"\n".join(buf)+"</code></pre>");continue
         m=re.match(r'(#{1,6})\s+(.*)',ln)
         if m:l=len(m.group(1));out.append(f"<h{l}>{inl(m.group(2))}</h{l}>");i+=1;continue
+        if ln.strip().startswith("|") and i+1<n and re.match(r'^\s*\|?[\s:|-]+\|?\s*$',lines[i+1]):
+            head=[c.strip() for c in ln.strip().strip("|").split("|")];i+=2;rows=[]
+            while i<n and lines[i].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")]);i+=1
+            t="<table><thead><tr>"+"".join(f"<th>{inl(c)}</th>" for c in head)+"</tr></thead><tbody>"
+            for r in rows:t+="<tr>"+"".join(f"<td>{inl(c)}</td>" for c in r)+"</tr>"
+            out.append(t+"</tbody></table>");continue
         if re.match(r'\s*[-*]\s+',ln):
             it=[]
             while i<n and re.match(r'\s*[-*]\s+',lines[i]):
                 item=[re.sub(r'\s*[-*]\s+','',lines[i],count=1)];i+=1
-                while i<n and lines[i].strip() and not re.match(r'(#{1,6}\s|```|\s*[-*]\s)',lines[i]):
+                while i<n and lines[i].strip() and not re.match(r'(#{1,6}\s|```|\s*[-*]\s|\s*\|)',lines[i]):
                     item.append(lines[i].strip());i+=1
                 it.append(inl(" ".join(item)))
             out.append("<ul>"+"".join(f"<li>{x}</li>" for x in it)+"</ul>");continue
         if ln.strip()=="":i+=1;continue
         p=[ln];i+=1
-        while i<n and lines[i].strip() and not re.match(r'(#{1,6}\s|```|\s*[-*]\s)',lines[i]):p.append(lines[i]);i+=1
+        while i<n and lines[i].strip() and not re.match(r'(#{1,6}\s|```|\s*[-*]\s|\s*\|)',lines[i]):p.append(lines[i]);i+=1
         out.append("<p>"+inl(" ".join(p))+"</p>")
     return "\n".join(out)
 def md_to_html_links(s):  # turn slug.md links into slug.html
@@ -75,6 +82,7 @@ p,li{color:#cdd6ee}
 code{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:#6EE7B7;border-radius:6px;padding:.06rem .35rem;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
 pre{position:relative;background:#0F172A;border:1px solid var(--line);border-radius:12px;padding:18px;overflow:auto}pre code{background:none;border:0;color:#E0E7FF;padding:0}
 .copy-btn{position:absolute;top:10px;right:10px;font-size:11px;font-weight:800;color:#0F172A;background:var(--green);border:0;border-radius:999px;padding:5px 11px;cursor:pointer;opacity:.6}.copy-btn:hover,.copy-btn:focus-visible{opacity:1}
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:13.5px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}th{color:var(--green);font-weight:700;white-space:nowrap}tbody tr:nth-child(even){background:rgba(255,255,255,.03)}
 footer{max-width:1040px;margin:0 auto;padding:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 @media(max-width:760px){.wrap{grid-template-columns:1fr}aside{position:static}}""",encoding="utf-8")
 (OUT/"copy.js").write_text("""(function(){var en=document.documentElement.lang==='en';var L='Copy',D='Copied';document.querySelectorAll('pre').forEach(function(p){if(p.querySelector('.copy-btn'))return;var c=p.querySelector('code');var b=document.createElement('button');b.type='button';b.className='copy-btn';b.textContent=L;b.addEventListener('click',function(){navigator.clipboard.writeText((c||p).textContent).then(function(){b.textContent=D;setTimeout(function(){b.textContent=L},1200)})});p.appendChild(b)})})();""",encoding="utf-8")

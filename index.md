@@ -23,6 +23,8 @@ agent tool projection.
   browser, MCP, and A2A.
 - [MCP and A2A](mcp.md) - how the same registry becomes LLM-callable tools and
   agent cards.
+- [Error reference](errors.md) - standardized error categories (gRPC/RFC),
+  `error://` addresses, fix hints and error-to-ticket.
 - [Host and node on a LAN](host-node-lan.md) - operator guide for host/node
   communication and flow routing across a local network.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
