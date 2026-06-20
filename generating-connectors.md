@@ -128,7 +128,7 @@ c = urirun.connector("hash", scheme="hash")
 def sha256(path: str) -> list[str]:
     return ["sha256sum", "{path}"]
 
-print(urirun.dump(c.bindings()))
+urirun.connector_emit(c.bindings())  # prints the urirun.bindings.v2 document
 ```
 
 **JavaScript** (`urirun-js`):
