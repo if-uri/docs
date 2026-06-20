@@ -27,6 +27,8 @@ agent tool projection.
   communication and flow routing across a local network.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
   inside noVNC desktops across the LAN.
+- [Project structure audit](project-structure-audit-2026-06-20.md) - current
+  repository map, runtime boundary and next refactor/test priorities.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
 - [Roadmap](roadmap.md) - practical TODO list for making the tool easier.
 - [Release checklist](release-checklist.md) - coordinated release steps across
@@ -49,4 +51,10 @@ For ready-made capabilities, install connector packages from the public hub:
 
 ```bash
 curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
+```
+
+Or preview the generated install command without changing the environment:
+
+```bash
+urirun connectors install http-check
 ```

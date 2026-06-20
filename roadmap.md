@@ -1,27 +1,37 @@
 # Roadmap
 
-The most useful next work for making `urirun` easier:
+The current roadmap is maintained in the public planning site:
+[roadmap.ifuri.com](https://roadmap.ifuri.com/).
 
-- Add `urirun connectors list/install` so the CLI can consume
-  `https://connect.ifuri.com/registry.json` directly instead of relying only on
-  shell one-liners.
-- Add connector entry-point discovery so installed packages can expose
-  `connector_manifest()` and `urirun_bindings()` without custom import glue.
-- Add `urirun init` as a guided command that writes `.urirun/`
-  defaults, sample policy, and an example binding.
-- Add `urirun doctor` to check Python version, optional dependencies, Docker,
-  PHP, Node, generated registry freshness, and duplicate route conflicts.
-- Add `urirun serve` as a single HTTP console command for logs, route listing,
-  dry-runs, and real execution behind policy.
-- Add a canonical `.env` loader shared by examples so ports and registry paths
-  have one source of truth.
-- Add first-class `log://` routes for frontend, backend, shell, firmware, and
-  Docker services.
-- Add a registry diff command: `urirun diff old-registry.json new-registry.json`.
-- Add scanner explanations: every generated binding should include source file,
-  source standard, and reason.
-- Expand installer smoke tests for GitHub installs, hub installs and GitHub
-  Release wheels. The `http-check` connector is the first proven external
-  connector package.
-- Keep public docs focused on v1 and v2; older experiment folders should remain
-  removed or archived outside the main project.
+## P0 - trust installs and execution
+
+- Keep active install commands and package dependencies on
+  `github.com/if-uri/urirun`.
+- Prove every available connector in Docker with host, pc1 and pc2.
+- Remove compatibility modules from `urirun` core after downstream migration.
+- Keep hub manifests, docs snippets and tested release tags synchronized.
+
+## P1 - make connectors easy to use
+
+- Add `urirun connector list/install/info` or equivalent app commands that
+  consume `connect.ifuri.com`.
+- Add connector install, registry refresh, payload forms and result panels to
+  the ifURI app GUI.
+- Publish per-connector contract pages with route lists, JSON schemas, policy
+  notes and tested version badges.
+- Add install bundles and a `doctor` check to `get.ifuri.com`.
+
+## P2 - improve adoption
+
+- Generate blog/tutorial content from connector metadata.
+- Keep SEO, social and LLM metadata synchronized across docs, hub and examples.
+- Finish brand exports and use the same assets across public sites.
+
+## Current planfile tickets
+
+- `IFURI-015` - remove remaining compatibility modules from `urirun` core.
+- `IFURI-016` - prove connector installs through a host-node Docker matrix.
+- `IFURI-017` - add connector install and route discovery to the app GUI.
+- `IFURI-018` - publish per-connector contract pages and compatibility badges.
+- `IFURI-019` - add installer bundles and doctor checks for host/node setup.
+- `IFURI-020` - fix planfile health/schema validation for local sprint files.

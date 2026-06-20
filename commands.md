@@ -37,6 +37,14 @@ Install a verified connector package:
 curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
 ```
 
+Dry-run the same install through the runtime catalog:
+
+```bash
+urirun connectors list --available
+urirun connectors show http-check
+urirun connectors install http-check
+```
+
 Inspect the connector directly:
 
 ```bash

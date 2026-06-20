@@ -2,6 +2,11 @@
 
 ## Documentation roadmap
 
+- [ ] Keep `project-structure-audit-2026-06-20.md` aligned with
+      roadmap IFURI-015..IFURI-020.
+- [ ] Add a public guide for the full connector Docker matrix once IFURI-016 has
+      a stable `make` target and captured logs/results.
+- [ ] Add app GUI operator screenshots after IFURI-017 lands.
 - [x] Publish the 2026-06-20 work summary on the generated docs site.
       (`work-summary-2026-06-20.md`, built into the site and linked from index)
 - [x] Add architecture diagrams for `URI -> binding -> registry -> adapter -> executor`.
@@ -17,6 +22,8 @@
 
 ## Cross-repository hygiene
 
+- [ ] Review active install snippets for `github.com/if-uri/urirun` before each
+      runtime or connector release.
 - [x] Link every connector README back to the hub page and docs.
       (Related-projects section with hub page + docs.ifuri.com links across all
       published `urirun-connector-*` repos)

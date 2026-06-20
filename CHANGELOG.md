@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Added
+- Add the 2026-06-20 project-structure audit page and link it into the generated
+  docs navigation.
 - Add the 2026-06-20 cross-repository work summary.
 - Add a documentation TODO focused on connector authoring, LAN host/node usage
   and noVNC demos.
@@ -24,3 +26,7 @@
 - Link the documentation index and README to the work summary and related
   implementation repositories.
 - Update runtime references to the current `if-uri/urirun` project namespace.
+- Replace the old single-connector roadmap with the current P0/P1/P2 plan and
+  planfile tickets IFURI-015..IFURI-020.
+- Add checked `urirun connectors ...` dry-run commands next to public
+  `curl | bash` connector install snippets.

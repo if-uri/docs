@@ -14,8 +14,13 @@ is now the public documentation home for the ifURI organization.
 - `commands.md` - CLI commands
 - `registry-and-bindings.md` - binding and registry model
 - `connectors.md` - connector hub, package shape, install and trust model
+- `connector-authoring.md` - connector package authoring and route declaration
 - `transports.md` - local, shell, Docker, HTTP, gRPC, browser, MCP and A2A usage
 - `mcp.md` - MCP and A2A projection for LLM clients
+- `host-node-lan.md` - operator guide for host/node communication across a LAN
+- `novnc-demo.md` - noVNC demo guide for the multi-computer URI flow
+- `project-structure-audit-2026-06-20.md` - repository map and next
+  refactor/test priorities
 - `logo.md` - generated SVG logo assets and usage notes
 - `roadmap.md` - planned improvements
 - `TODO.md` - documentation and cross-repository follow-up work

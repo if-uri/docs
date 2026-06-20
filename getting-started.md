@@ -16,6 +16,13 @@ The connector hub can install `urirun` plus selected connector packages:
 curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check,time-tools' | bash
 ```
 
+To inspect the same connector install command without executing `pip`, use the
+runtime catalog command:
+
+```bash
+urirun connectors install http-check
+```
+
 For a virtualenv:
 
 ```bash

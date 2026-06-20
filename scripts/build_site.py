@@ -6,7 +6,7 @@
 import os, re, html, sys, shutil, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=pathlib.Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/"_site"
-ORDER=["index","getting-started","naming","commands","registry-and-bindings","connectors","connector-authoring","transports","mcp","host-node-lan","novnc-demo","logo","roadmap","release-checklist"]
+ORDER=["index","getting-started","naming","commands","registry-and-bindings","connectors","connector-authoring","transports","mcp","host-node-lan","novnc-demo","project-structure-audit-2026-06-20","logo","roadmap","release-checklist"]
 def md(text):
     out=[];i=0;lines=text.replace("\r","").split("\n");n=len(lines)
     def inl(s):
