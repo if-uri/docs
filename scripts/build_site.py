@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Author: Tom Sapletta · https://tom.sapletta.com
+# Part of the ifURI solution.
+
 """Render the ifURI docs (markdown) into a brand static site for docs.ifuri.com."""
 import os, re, html, sys, shutil, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]

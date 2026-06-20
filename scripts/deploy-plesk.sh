@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Author: Tom Sapletta · https://tom.sapletta.com
+# Part of the ifURI solution.
+
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REMOTE="${IFURI_DEPLOY_HOST:-ifuri@ifuri.com}"
