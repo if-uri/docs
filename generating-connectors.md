@@ -173,7 +173,12 @@ urirun list registry.json
 ```
 
 The SDKs live next to the runtime under `adapters/<language>/` in
-[tellmesh/urirun](https://github.com/if-uri/urirun).
+[if-uri/urirun](https://github.com/if-uri/urirun): Python, JavaScript, Go, PHP,
+Ruby, Perl, Rust, Bash and C. They are kept in lockstep by a conformance check —
+`python3 adapters/conformance.py` builds the same `hash` connector with every
+SDK and asserts the documents are identical and valid — so a connector behaves
+the same no matter which language authored it. The canonical SDK surface is
+defined in `adapters/SPEC.md`.
 
 ## Related
 
