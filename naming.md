@@ -67,7 +67,7 @@ git@github.com:tellmesh/urirun.git
 ```
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.12#subdirectory=adapters/python"
+pip install "git+https://github.com/tellmesh/urirun.git@v0.3.14#subdirectory=adapters/python"
 npm install github:tellmesh/urirun
 ```
 

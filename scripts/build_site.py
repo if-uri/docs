@@ -34,7 +34,7 @@ def md(text):
 def md_to_html_links(s):  # turn slug.md links into slug.html
     return re.sub(r'href="([a-z0-9-]+)\.md"',r'href="\1.html"',s)
 slugs=[s for s in ORDER if (ROOT/f"{s}.md").exists()]
-slugs+= [p.stem for p in ROOT.glob("*.md") if p.stem not in slugs and p.stem not in ("README","LICENSE")]
+slugs+= [p.stem for p in ROOT.glob("*.md") if p.stem not in slugs and p.stem not in ("README","LICENSE","TODO","CHANGELOG")]
 titles={}
 for s in slugs:
     t=None
