@@ -17,10 +17,14 @@ agent tool projection.
   dispatchable registry.
 - [Connectors](connectors.md) - installable URI packages, the public hub,
   catalog manifests, package shape and trust model.
+- [Connector authoring](connector-authoring.md) - build a connector with
+  `urirun.connector(...)` and export registry-ready bindings.
 - [Transports](transports.md) - local functions, shell, Docker, HTTP, gRPC,
   browser, MCP, and A2A.
 - [MCP and A2A](mcp.md) - how the same registry becomes LLM-callable tools and
   agent cards.
+- [Host and node on a LAN](host-node-lan.md) - operator guide for host/node
+  communication and flow routing across a local network.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
   inside noVNC desktops across the LAN.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
