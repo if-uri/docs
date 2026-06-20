@@ -8,6 +8,8 @@ agent tool projection.
 
 - [Getting started](getting-started.md) - install from GitHub, scan artifacts,
   compile a registry, and run a URI.
+- [Work summary 2026-06-20](work-summary-2026-06-20.md) - current
+  cross-repository status for `urirun`, connectors, ifURI App and examples.
 - [Naming](naming.md) - what uses `urirun` and why the GitHub repo URL still
   contains `urihandler`.
 - [Commands](commands.md) - CLI commands and versioned entry points.
@@ -27,7 +29,7 @@ agent tool projection.
 Use v2 for new projects:
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.12#subdirectory=adapters/python"
+pip install "git+https://github.com/tellmesh/urirun.git@v0.3.14#subdirectory=adapters/python"
 urirun scan ./project --out generated/bindings.v2.json --registry-out generated/registry.json
 urirun list generated/registry.json
 ```
