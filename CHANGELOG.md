@@ -17,6 +17,8 @@
   routes in the connector guide.
 - Update Domain Monitor install snippets to `v0.2.1`, the self-contained
   connector runtime release.
+- Update SQLite Context install snippets to `v0.1.1`, the self-contained
+  host data store release.
 
 ### Changed
 - Link the documentation index and README to the work summary and related

@@ -224,7 +224,7 @@ log://host/logs/query/recent
 Run it through `urirun`:
 
 ```bash
-pip install 'git+https://github.com/if-uri/urirun-connector-sqlite-context.git@v0.1.0'
+pip install 'git+https://github.com/if-uri/urirun-connector-sqlite-context.git@v0.1.1'
 
 urirun-sqlite-context bindings > bindings.json
 urirun validate bindings.json
