@@ -19,6 +19,8 @@ agent tool projection.
   catalog manifests, package shape and trust model.
 - [Connector authoring](connector-authoring.md) - build a connector with
   `urirun.connector(...)` and export registry-ready bindings.
+- [Generating connectors](generating-connectors.md) - from a command, a service
+  or a Docker artifact, and the same contract in Python, JS, Go and PHP.
 - [Transports](transports.md) - local functions, shell, Docker, HTTP, gRPC,
   browser, MCP, and A2A.
 - [MCP and A2A](mcp.md) - how the same registry becomes LLM-callable tools and
