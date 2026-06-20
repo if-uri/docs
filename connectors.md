@@ -144,11 +144,14 @@ The full scenario starts `host`, `pc1`, `pc2`, `ifuri-site` and
 `connect.ifuri.com`, executes URI routes, checks host-node communication, serves
 the same registry over gRPC, and verifies MCP tools plus A2A skills.
 
-Current Docker coverage:
+Catalog status (mirrors the hub manifests; the live
+[connectors.json](https://connect.ifuri.com/connectors.json) and
+[llms.txt](https://connect.ifuri.com/llms.txt) are the source of truth):
 
-- available and tested: `planfile`, `sqlite-context`, `domain-monitor`,
-  `http-check`, `time-tools`, `namecheap-dns`, `grpc-transport`,
-- planned and skipped until packages exist: `mqtt`, `browser-control`.
+- available: `http-check`, `time-tools`, `browser-control`, `domain-monitor`,
+  `planfile`, `sqlite-context`, `namecheap-dns`, `grpc-transport`,
+- planned (manifest listed, package pending): `get-node`, `kvm`, `llm`,
+  `mcp-filesystem`, `mqtt`.
 
 ## Connector package shape
 
