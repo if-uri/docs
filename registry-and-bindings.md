@@ -2,6 +2,28 @@
 
 `urirun` separates the package contract from the runtime lookup tree.
 
+## Architecture
+
+A call flows through five stages. The URI is the stable address; everything to
+its right is generated or selected, never hand-wired into the caller.
+
+```text
+  URI                 binding                registry              adapter            executor
+  scheme://target/    declared route +       compiled, validated   adapter kind +     runs the
+  resource/operation  input schema +    -->  dispatch tree    -->  policy gate    -->  argv / shell /
+                      adapter config         (generated/)          (allow rules)      HTTP / gRPC / fn
+        |                   ^                                                              |
+        |   one URI, called from shell / backend / frontend / flow / agent tool           |
+        +------------------ payload validated against the binding schema ------------------+
+```
+
+- **URI** - `scheme://target/resource/operation`, the only thing a caller needs.
+- **Binding** - declares the route, its input schema and which adapter runs it.
+- **Registry** - the compiled, reviewable dispatch tree the runtime reads from.
+- **Adapter** - the kind that executes the route (argv, shell, HTTP, gRPC,
+  function, MCP, A2A), behind a policy `--allow` gate.
+- **Executor** - the actual process or call the adapter drives.
+
 ## Binding document
 
 A binding document is portable JSON. It describes URI routes, input schemas, and
