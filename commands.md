@@ -69,6 +69,38 @@ urirun run 'httpcheck://host/http/query/status' registry.json \
   --allow 'httpcheck://host/*'
 ```
 
+## Inspect runtime errors
+
+Failed runs are stamped with stable `error://` addresses and persisted to
+`~/.urirun/errors.jsonl` by default:
+
+```bash
+urirun errors recent
+urirun errors search policy
+urirun errors info E-ce9b1dd4
+urirun errors bindings > error-bindings.json
+urirun compile error-bindings.json --out error-registry.json
+urirun run 'error://local/errors/query/recent' error-registry.json
+```
+
+Use `urirun errors ticket <code> <project>` to turn a recurring error into a
+planfile ticket.
+
+## Check compatibility migration
+
+Legacy host/domain modules are moving out of `urirun` core into connector
+packages and the ifURI app. Use the compatibility report before removing old
+imports from a downstream project:
+
+```bash
+urirun compat list
+urirun compat list --json
+urirun compat check --json
+```
+
+`compat check` returns non-zero until every replacement package or app-layer
+replacement is installed.
+
 ## Versioned commands
 
 ```bash

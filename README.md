@@ -17,6 +17,7 @@ is now the public documentation home for the ifURI organization.
 - `connector-authoring.md` - connector package authoring and route declaration
 - `transports.md` - local, shell, Docker, HTTP, gRPC, browser, MCP and A2A usage
 - `mcp.md` - MCP and A2A projection for LLM clients
+- `errors.md` - `error://` runtime errors, search, fix hints and ticketing
 - `host-node-lan.md` - operator guide for host/node communication across a LAN
 - `novnc-demo.md` - noVNC demo guide for the multi-computer URI flow
 - `project-structure-audit-2026-06-20.md` - repository map and next

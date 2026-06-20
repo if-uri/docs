@@ -9,6 +9,10 @@
 - [ ] Add app GUI operator screenshots after IFURI-017 lands.
 - [x] Document released IFURI-008 connector entry-point discovery for installed
       connector packages.
+- [x] Document built-in `error://` diagnostics, CLI shortcuts, URI bindings and
+      planfile ticket conversion. (`errors.md`, `commands.md`)
+- [x] Document `urirun compat list/check` for IFURI-015 core-to-connector/app
+      migration checks. (`commands.md`)
 - [x] Publish the 2026-06-20 work summary on the generated docs site.
       (`work-summary-2026-06-20.md`, built into the site and linked from index)
 - [x] Add architecture diagrams for `URI -> binding -> registry -> adapter -> executor`.

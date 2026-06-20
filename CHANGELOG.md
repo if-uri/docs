@@ -36,3 +36,7 @@
   connector-authoring tutorial.
 - Mark IFURI-020 as released and document validated planfile sprint/health
   commands.
+- Document built-in `error://` diagnostics, including `urirun errors ...`,
+  registry-ready error bindings, URI flow examples and planfile ticket creation.
+- Document `urirun compat list/check` as the migration report for modules moving
+  from `urirun` core to connector packages or the ifURI app.
