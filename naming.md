@@ -1,7 +1,7 @@
 # Naming
 
-The public runtime name is `urirun`. The GitHub repository URL is still
-`tellmesh/urirun`.
+The public runtime name is `urirun`. The current GitHub repository URL is
+`if-uri/urirun`.
 
 ## Use `urirun` for runtime surfaces
 
@@ -57,19 +57,20 @@ import { parseUri } from "urirun";
 LABEL io.tellmesh.urirun.manifest="/app/bindings.json"
 ```
 
-## `urihandler` is now only historical
+## Earlier names are historical
 
-The repository was renamed to `tellmesh/urirun`, so everything user-facing is
-`urirun`, including the remote and install commands:
+The runtime moved through earlier tellmesh repository names before the current
+ifURI organization namespace. Everything user-facing is now `urirun`, including
+the remote and install commands:
 
 ```txt
-git@github.com:tellmesh/urirun.git
+git@github.com:if-uri/urirun.git
 ```
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.14#subdirectory=adapters/python"
-npm install github:tellmesh/urirun
+pip install "git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
+npm install github:if-uri/urirun
 ```
 
-GitHub keeps a redirect from the old `tellmesh/urihandler` URL, and historical
-changelog entries can still mention `urihandler`.
+Historical changelog entries can still mention older names, but new docs,
+scripts, manifests and examples should point at `if-uri/urirun`.

@@ -2,18 +2,15 @@
 
 Documentation for the `urirun` URI runtime and related ifURI integration.
 
-This repository was split out from:
-
-```text
-tellmesh/urihandler/docs
-```
+This repository was split out from the earlier tellmesh documentation tree and
+is now the public documentation home for the ifURI organization.
 
 ## Contents
 
 - `index.md` - documentation index
 - `work-summary-2026-06-20.md` - current cross-repository implementation status
 - `getting-started.md` - first install and registry workflow
-- `naming.md` - what uses `urirun` and why the repo URL still says `urihandler`
+- `naming.md` - what uses `urirun` and how the repository namespace migrated
 - `commands.md` - CLI commands
 - `registry-and-bindings.md` - binding and registry model
 - `connectors.md` - connector hub, package shape, install and trust model
@@ -32,8 +29,11 @@ tellmesh/urihandler/docs
 - `github.com/if-uri/urirun-connector-http-check`
 - `github.com/if-uri/urirun-connector-time-tools`
 - `github.com/if-uri/urirun-connector-browser-control`
+- `github.com/if-uri/urirun-connector-planfile`
+- `github.com/if-uri/urirun-connector-domain-monitor`
+- `github.com/if-uri/urirun-connector-sqlite-context`
 - `github.com/if-uri/examples`
 - `github.com/if-uri/roadmap`
 - `github.com/if-uri/marketing`
 - `github.com/if-uri/logo`
-- `github.com/tellmesh/urirun`
+- `github.com/if-uri/urirun`

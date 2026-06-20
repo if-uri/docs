@@ -7,11 +7,11 @@ versions.
 
 ## 1. Runtime (`urirun`)
 
-- [ ] Tests green on the target commit (`make test` in `tellmesh/urirun`).
+- [ ] Tests green on the target commit (`make test` in `if-uri/urirun`).
 - [ ] Tag the release (for example `v0.3.14`) and push the tag.
 - [ ] Update install snippets to the new tag across docs, the website and
       connector READMEs:
-      `pip install "git+https://github.com/tellmesh/urirun.git@<tag>#subdirectory=adapters/python"`.
+      `pip install "git+https://github.com/if-uri/urirun.git@<tag>#subdirectory=adapters/python"`.
 - [ ] CHANGELOG and VERSION updated.
 
 ## 2. Connector packages

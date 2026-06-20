@@ -5,8 +5,8 @@ This note summarizes the current cross-repository state after the latest
 
 ## Completed
 
-- Standardized the public runtime name around `urirun`, while keeping historical
-  GitHub references to `tellmesh/urirun`.
+- Standardized the public runtime name around `urirun` and moved current
+  install/documentation links to `if-uri/urirun`.
 - Added the preferred Python authoring style with `@urirun.command(...)`,
   `@urirun.shell(...)` and `urirun.connector(...)`, so connector packages can
   declare routes once and export registry-ready bindings.
@@ -17,6 +17,9 @@ This note summarizes the current cross-repository state after the latest
   installers.
 - Added and verified connector packages for HTTP checks, time tools and browser
   control, including registry generation and MCP/A2A projection checks.
+- Added and verified connector packages for Planfile tasks, Domain Monitor /
+  Namecheap DNS flows and SQLite host context, including fresh GitHub installs,
+  registry generation, Docker smoke tests and MCP/A2A projection checks.
 - Documented the user bootstrap path across `get.ifuri.com`, `ifuri.com`,
   `connect.ifuri.com`, `if-uri/examples` and the individual connector
   repositories.
@@ -71,7 +74,7 @@ the full non-e2e pytest suite in `if-uri/app`.
 
 ## Important repositories
 
-- Runtime core: [tellmesh/urirun](https://github.com/tellmesh/urirun)
+- Runtime core: [if-uri/urirun](https://github.com/if-uri/urirun)
 - App/host UI: [if-uri/app](https://github.com/if-uri/app)
 - Public docs: [if-uri/docs](https://github.com/if-uri/docs)
 - Examples: [if-uri/examples](https://github.com/if-uri/examples)
@@ -84,6 +87,9 @@ the full non-e2e pytest suite in `if-uri/app`.
 - HTTP connector: [if-uri/urirun-connector-http-check](https://github.com/if-uri/urirun-connector-http-check)
 - Time connector: [if-uri/urirun-connector-time-tools](https://github.com/if-uri/urirun-connector-time-tools)
 - Browser connector: [if-uri/urirun-connector-browser-control](https://github.com/if-uri/urirun-connector-browser-control)
+- Planfile connector: [if-uri/urirun-connector-planfile](https://github.com/if-uri/urirun-connector-planfile)
+- Domain monitor connector: [if-uri/urirun-connector-domain-monitor](https://github.com/if-uri/urirun-connector-domain-monitor)
+- SQLite context connector: [if-uri/urirun-connector-sqlite-context](https://github.com/if-uri/urirun-connector-sqlite-context)
 
 ## Documentation files updated
 
@@ -91,7 +97,7 @@ the full non-e2e pytest suite in `if-uri/app`.
 - `if-uri/examples`: README, TODO and changelog plus the `11-novnc_lan_flow`
   Docker/noVNC documentation.
 - `if-uri/app`: README, TODO and changelog for app/host follow-up work.
-- `tellmesh/urirun`: README, TODO and changelog with current `v0.3.14` install
+- `if-uri/urirun`: README, TODO and changelog with current `v0.3.14` install
   examples and runtime/core boundary tasks.
 - `if-uri/connect.ifuri.com`: README, TODO and changelog for connector hub work.
 - `if-uri/get`: README, TODO and changelog for node bootstrap work.
@@ -99,14 +105,17 @@ the full non-e2e pytest suite in `if-uri/app`.
 - `if-uri/roadmap`: README, TODO and changelog for roadmap site work.
 - `if-uri/marketing`: README, TODO and changelog for outreach operations.
 - `if-uri/logo`: README, TODO and changelog for brand package work.
-- Connector packages: README/TODO/CHANGELOG links for HTTP check, time tools and
-  browser control.
+- Connector packages: README/TODO/CHANGELOG links for HTTP check, time tools,
+  browser control, Planfile, Domain Monitor and SQLite Context.
 
 ## Remaining work
 
 - Move host/app-specific modules out of the runtime core when the package split
   is ready.
 - Add stable connector discovery/list/install commands to `urirun` itself.
+- Move remaining compatibility runtime code for Planfile, Domain Monitor,
+  Namecheap DNS and SQLite context fully out of `urirun` core after downstream
+  users migrate to connector packages.
 - Make the noVNC scenario launchable from ifURI App, not only from Make/Docker.
 - Add browser-level UI tests for the noVNC dashboard once Playwright browsers
   are installed in CI.

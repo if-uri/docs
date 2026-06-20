@@ -3,7 +3,7 @@
 Install directly from GitHub:
 
 ```bash
-pip install "git+https://github.com/tellmesh/urirun.git@v0.3.14#subdirectory=adapters/python"
+pip install "git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
 ```
 
 The installed CLI and Python import namespace are both `urirun`.

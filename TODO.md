@@ -19,7 +19,9 @@
 
 - [x] Link every connector README back to the hub page and docs.
       (Related-projects section with hub page + docs.ifuri.com links across all
-      six `urirun-connector-*` repos)
+      published `urirun-connector-*` repos)
+- [x] Record the Planfile, Domain Monitor and SQLite Context connector split in
+      the cross-repository work summary.
 - [x] Keep `connect.ifuri.com/llms.txt` and docs connector pages in sync.
       (`connectors.md` catalog status now mirrors the 13 hub manifests, 8
       available / 5 planned, and points to connectors.json/llms.txt as canonical)

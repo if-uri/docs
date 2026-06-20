@@ -24,7 +24,7 @@ curl -fsSL 'https://connect.ifuri.com/install?connectors=http-check' | bash
 Install multiple connectors:
 
 ```bash
-curl -fsSL 'https://connect.ifuri.com/install?connectors=planfile,http-check,time-tools,namecheap-dns' | bash
+curl -fsSL 'https://connect.ifuri.com/install?connectors=planfile,domain-monitor,sqlite-context,http-check,time-tools' | bash
 ```
 
 When using a virtualenv, run the installer with that Python binary:
@@ -41,7 +41,25 @@ The `PATH` line matters for command bindings such as `argv-template`, because
 
 ## Tested external connectors
 
-The first external connector package is:
+The currently tested external connector packages are:
+
+| Connector | Package repo | Main URI examples |
+| --- | --- | --- |
+| HTTP Check | [if-uri/urirun-connector-http-check](https://github.com/if-uri/urirun-connector-http-check) | `httpcheck://host/http/query/status` |
+| Time Tools | [if-uri/urirun-connector-time-tools](https://github.com/if-uri/urirun-connector-time-tools) | `time://host/clock/query/now` |
+| Planfile | [if-uri/urirun-connector-planfile](https://github.com/if-uri/urirun-connector-planfile) | `task://host/ticket/command/create`, `planfile://host/dsl/command/run` |
+| Domain Monitor | [if-uri/urirun-connector-domain-monitor](https://github.com/if-uri/urirun-connector-domain-monitor) | `monitor://host/http/query/status`, `dns://host/records/command/plan`, `flow://host/domain/command/check` |
+| SQLite Context | [if-uri/urirun-connector-sqlite-context](https://github.com/if-uri/urirun-connector-sqlite-context) | `data://host/record/command/upsert`, `log://host/logs/query/recent` |
+
+Each package exposes a hub page and a machine-readable manifest:
+
+- [connect.ifuri.com/connectors/http-check](https://connect.ifuri.com/connectors/http-check),
+- [connect.ifuri.com/connectors/time-tools](https://connect.ifuri.com/connectors/time-tools),
+- [connect.ifuri.com/connectors/planfile](https://connect.ifuri.com/connectors/planfile),
+- [connect.ifuri.com/connectors/domain-monitor](https://connect.ifuri.com/connectors/domain-monitor),
+- [connect.ifuri.com/connectors/sqlite-context](https://connect.ifuri.com/connectors/sqlite-context).
+
+### HTTP Check
 
 - package repo: [if-uri/urirun-connector-http-check](https://github.com/if-uri/urirun-connector-http-check),
 - hub page: [connect.ifuri.com/connectors/http-check](https://connect.ifuri.com/connectors/http-check),
@@ -73,7 +91,7 @@ urirun run 'httpcheck://host/http/query/status' registry.json \
 The connector was verified from a clean virtualenv by installing through the
 public hub and executing the URI through `urirun run`.
 
-The second external connector package is:
+### Time Tools
 
 - package repo: [if-uri/urirun-connector-time-tools](https://github.com/if-uri/urirun-connector-time-tools),
 - hub page: [connect.ifuri.com/connectors/time-tools](https://connect.ifuri.com/connectors/time-tools),
@@ -104,6 +122,88 @@ urirun run 'time://host/clock/query/now' registry.json \
   --allow 'time://host/*'
 ```
 
+### Planfile
+
+Planfile exposes ticket queues and DSL commands as URI routes:
+
+```text
+task://host/tickets/query/list
+task://host/ticket/command/create
+task://host/ticket/command/start
+task://host/ticket/command/complete
+planfile://host/dsl/command/run
+```
+
+Run it through `urirun`:
+
+```bash
+pip install 'git+https://github.com/if-uri/urirun-connector-planfile.git@v0.1.1'
+
+urirun-planfile bindings > bindings.json
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'task://host/ticket/command/create' registry.json \
+  --payload '{"project":".","name":"Daily domain check","queue":"daily"}' \
+  --execute \
+  --allow 'task://host/*'
+```
+
+### Domain Monitor
+
+Domain Monitor moves HTTP status checks, DNS planning, Namecheap-safe DNS flows,
+screenshots and daily domain-check flows out of the `urirun` core:
+
+```text
+monitor://host/http/query/status
+dns://host/records/command/plan
+dns://host/records/command/backup
+dns://host/records/command/apply
+flow://host/domain/command/check
+flow://host/daily/command/run
+```
+
+Safe mock DNS planning example:
+
+```bash
+pip install 'git+https://github.com/if-uri/urirun-connector-domain-monitor.git@v0.1.0'
+
+urirun-domain-monitor bindings > bindings.json
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'dns://host/records/command/plan' registry.json \
+  --payload '{"domain":"example.com","provider":"namecheap","current_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.10\"}]","desired_records":"[{\"Name\":\"@\",\"Type\":\"A\",\"Address\":\"203.0.113.11\"}]"}' \
+  --execute \
+  --allow 'dns://host/*'
+```
+
+### SQLite Context
+
+SQLite Context gives the host a local memory layer for datasets, records,
+artifacts, checks and logs:
+
+```text
+data://host/dataset/command/create
+data://host/record/command/upsert
+data://host/records/query/search
+artifact://host/artifact/command/register
+check://host/check/command/add
+log://host/logs/query/recent
+```
+
+Run it through `urirun`:
+
+```bash
+pip install 'git+https://github.com/if-uri/urirun-connector-sqlite-context.git@v0.1.0'
+
+urirun-sqlite-context bindings > bindings.json
+urirun validate bindings.json
+urirun compile bindings.json --out registry.json
+urirun run 'data://host/dataset/command/create' registry.json \
+  --payload '{"name":"domains","dataset_schema":"{\"type\":\"object\"}"}' \
+  --execute \
+  --allow 'data://host/*'
+```
+
 ## Docker verification
 
 Every executable connector should have a Docker smoke test that proves it works
@@ -128,6 +228,30 @@ For the Time Tools connector:
 ```bash
 git clone https://github.com/if-uri/urirun-connector-time-tools.git
 cd urirun-connector-time-tools
+make docker-test
+```
+
+For Planfile:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-planfile.git
+cd urirun-connector-planfile
+make docker-test
+```
+
+For Domain Monitor:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-domain-monitor.git
+cd urirun-connector-domain-monitor
+make docker-test
+```
+
+For SQLite Context:
+
+```bash
+git clone https://github.com/if-uri/urirun-connector-sqlite-context.git
+cd urirun-connector-sqlite-context
 make docker-test
 ```
 
