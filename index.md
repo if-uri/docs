@@ -21,6 +21,8 @@ agent tool projection.
   browser, MCP, and A2A.
 - [MCP and A2A](mcp.md) - how the same registry becomes LLM-callable tools and
   agent cards.
+- [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
+  inside noVNC desktops across the LAN.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
 - [Roadmap](roadmap.md) - practical TODO list for making the tool easier.
 
