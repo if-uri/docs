@@ -33,6 +33,16 @@ The planning source is the roadmap page:
 - `IFURI-017` - add connector install and route discovery to the app GUI.
 - `IFURI-018` - publish per-connector contract pages and compatibility badges.
 - `IFURI-019` - add installer bundles and doctor checks for host/node setup.
-- `IFURI-020` - fix planfile health/schema validation for local sprint files.
+- `IFURI-020` - released: local sprint YAML validation uses `--file-type
+  sprint`, and `planfile health check` handles generated ticket buckets without
+  crashing.
+
+## Validated planfile commands
+
+```bash
+planfile validate schema .planfile/sprints/current.yaml --file-type sprint
+planfile validate schema .planfile/sprints/backlog.yaml --file-type sprint
+planfile health check get
+```
 
 Use [roadmap.ifuri.com](https://roadmap.ifuri.com/) for current status.

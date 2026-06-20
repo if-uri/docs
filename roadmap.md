@@ -34,4 +34,8 @@ The current roadmap is maintained in the public planning site:
 - `IFURI-017` - add connector install and route discovery to the app GUI.
 - `IFURI-018` - publish per-connector contract pages and compatibility badges.
 - `IFURI-019` - add installer bundles and doctor checks for host/node setup.
-- `IFURI-020` - fix planfile health/schema validation for local sprint files.
+
+Released tooling fix:
+
+- `IFURI-020` - local sprint YAML validation works with `--file-type sprint`;
+  `planfile health check` no longer crashes on generated ticket buckets.

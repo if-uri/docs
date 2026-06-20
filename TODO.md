@@ -3,7 +3,7 @@
 ## Documentation roadmap
 
 - [ ] Keep `project-structure-audit-2026-06-20.md` aligned with
-      roadmap IFURI-015..IFURI-020.
+      roadmap IFURI-015..IFURI-019 and released tooling fixes.
 - [ ] Add a public guide for the full connector Docker matrix once IFURI-016 has
       a stable `make` target and captured logs/results.
 - [ ] Add app GUI operator screenshots after IFURI-017 lands.
