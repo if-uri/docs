@@ -7,6 +7,8 @@
 - [ ] Add a public guide for the full connector Docker matrix once IFURI-016 has
       a stable `make` target and captured logs/results.
 - [ ] Add app GUI operator screenshots after IFURI-017 lands.
+- [x] Document released IFURI-008 connector entry-point discovery for installed
+      connector packages.
 - [x] Publish the 2026-06-20 work summary on the generated docs site.
       (`work-summary-2026-06-20.md`, built into the site and linked from index)
 - [x] Add architecture diagrams for `URI -> binding -> registry -> adapter -> executor`.

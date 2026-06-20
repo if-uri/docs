@@ -106,12 +106,30 @@ runs routes that match an explicit allow pattern.
 
 A publishable connector normally ships:
 
-- `pyproject.toml` with a console script (here `urirun-http-check`),
+- `pyproject.toml` with a console script (here `urirun-http-check`) and a
+  `urirun.bindings` entry point,
 - `connector.manifest.json` with catalog metadata,
 - the connector module that calls `urirun.connector(...)` and declares commands,
 - `urirun_bindings()` / `connector_manifest()` accessors,
 - tests that prove the package works without the hub,
 - a Docker smoke test that proves network execution and MCP/A2A projection.
+
+Minimal `pyproject.toml` entry:
+
+```toml
+[project.scripts]
+urirun-http-check = "urirun_connector_http_check.cli:main"
+
+[project.entry-points."urirun.bindings"]
+http-check = "urirun_connector_http_check:urirun_bindings"
+```
+
+With that in place, installed connectors are visible to the runtime:
+
+```bash
+urirun discover --registry-out .urirun/connectors.registry.json
+urirun list --entry-points
+```
 
 ## 6. Verify in Docker
 

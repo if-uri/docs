@@ -30,5 +30,9 @@
   planfile tickets IFURI-015..IFURI-020.
 - Add checked `urirun connectors ...` dry-run commands next to public
   `curl | bash` connector install snippets.
+- Mark IFURI-008 as released and document entry-point connector discovery via
+  `urirun discover` and `urirun compile --entry-points`.
+- Add `urirun.bindings` entry-point examples to the connector guide and
+  connector-authoring tutorial.
 - Mark IFURI-020 as released and document validated planfile sprint/health
   commands.

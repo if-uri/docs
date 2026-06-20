@@ -13,8 +13,9 @@ The current roadmap is maintained in the public planning site:
 
 ## P1 - make connectors easy to use
 
-- Add `urirun connector list/install/info` or equivalent app commands that
-  consume `connect.ifuri.com`.
+- Use `urirun connectors list/show/install/check` for the public hub catalog
+  and `urirun discover` / `urirun compile --entry-points` for installed
+  connector route discovery.
 - Add connector install, registry refresh, payload forms and result panels to
   the ifURI app GUI.
 - Publish per-connector contract pages with route lists, JSON schemas, policy
@@ -29,6 +30,8 @@ The current roadmap is maintained in the public planning site:
 
 ## Current planfile tickets
 
+- `IFURI-008` - released: installed connectors expose `urirun.bindings`
+  entry-points and can generate a registry without manual JSON merging.
 - `IFURI-015` - remove remaining compatibility modules from `urirun` core.
 - `IFURI-016` - prove connector installs through a host-node Docker matrix.
 - `IFURI-017` - add connector install and route discovery to the app GUI.

@@ -39,6 +39,28 @@ PATH="$PWD/.venv/bin:$PATH" urirun-http-check status https://ifuri.com --expect-
 The `PATH` line matters for command bindings such as `argv-template`, because
 `urirun` must be able to find console scripts installed by connector packages.
 
+## Discover installed connector routes
+
+Available connector packages expose their binding documents through the
+`urirun.bindings` Python entry-point group. After installation, a host can build
+a registry from all installed connector packages without manually merging JSON:
+
+```bash
+urirun discover \
+  --out .urirun/connectors.bindings.v2.json \
+  --registry-out .urirun/connectors.registry.json
+
+urirun list --entry-points
+urirun compile --entry-points --out .urirun/connectors.registry.json
+```
+
+The registry can then be projected to MCP/A2A or used by a node:
+
+```bash
+python3 -m urirun.v2_mcp tools .urirun/connectors.registry.json
+urirun node init --name pc1 --registry .urirun/connectors.registry.json --port 8765
+```
+
 ## Tested external connectors
 
 The currently tested external connector packages are:
