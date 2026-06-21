@@ -44,10 +44,15 @@ For each `urirun-connector-*` package:
 
 ## 5. App and host docs
 
-- [ ] `if-uri/app` README, CHANGELOG and VERSION reflect the release.
-- [ ] `ifuri.com` download copy aligned: app version is live from GitHub
-      Releases; the urirun runtime tag is current.
-- [ ] `get.ifuri.com` default `URIRUN_REF` points at the released tag.
+- [ ] `if-uri/app` README, CHANGELOG, VERSION and the `urirun @ …@<tag>` pin in
+      `pyproject.toml` reflect the release.
+- [ ] `get.urirun.com` default `URIRUN_REF` (in `node.sh` and `host.sh`) points at
+      the released tag — this is the installer users actually run. `get.ifuri.com`
+      hosts the **app** download and 301-redirects `/node.sh` to get.urirun.com.
+- [ ] `ifuri.com` download copy aligned: app version is live from GitHub Releases;
+      the urirun runtime tag is current.
+- [ ] Apply pins in one move with `bash if-uri/ifuri-com/scripts/apply-release-pins.sh <tag>`
+      (only after the tag is pushed), then redeploy get.urirun.com + docs.
 
 ## 6. Cross-repository sync
 
