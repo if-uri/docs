@@ -145,6 +145,35 @@ The smoke environment starts a target service, installs `urirun` and the
 connector in a separate tester, executes the URI, and checks the MCP tools and
 A2A card projections.
 
+## 7. Reuse the urirun host backend (don't duplicate it)
+
+`urirun` is a self-contained backend: storage and operational logic live once in
+its `host/` layer (`urirun.host.host_db`, `urirun.host.domain_monitor`,
+`urirun.host.planfile_adapter`). A connector that needs that behaviour should
+**reuse the backend**, not copy it — the connector then owns only the URI route
+declarations, the CLI and the JSON envelope.
+
+```python
+import urirun
+from urirun.host import host_db          # the backend, single source of truth
+
+DATA = urirun.connector("sqlite-context", scheme="data")
+
+@DATA.command("datasets/query/list", meta={"label": "List datasets"})
+def datasets_list_command(db: str = "") -> list[str]:
+    return ["urirun-sqlite-context", "datasets-list", "--db", "{db}"]
+
+def list_datasets(db: str = "") -> dict:
+    # delegate to the backend; add only the connector envelope
+    return {"ok": True, "connector": "sqlite-context", "datasets": host_db.list_datasets(db or None)}
+```
+
+The official `sqlite-context`, `domain-monitor` and `planfile` connectors are
+built exactly this way — each shrank by ~300–400 lines once it stopped copying
+the backend. Use this when your connector mirrors an existing host capability;
+write standalone logic only when there is no backend equivalent (e.g.
+`time-tools`, `uuid`). The boundary is tracked by `urirun compat list`.
+
 ## Next steps
 
 - [Connectors](connectors.md) - install from the hub, package shape, catalog
