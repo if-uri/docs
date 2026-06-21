@@ -11,7 +11,7 @@ automatically by `make docs-lint`.
 | `README.md` | What the project is, how to install/run it, links, license. ≥ 20 lines. |
 | `CHANGELOG.md` | [Keep a Changelog](https://keepachangelog.com) format — a `## [version]` heading per release. |
 | `VERSION` | A single [SemVer](https://semver.org) line (e.g. `0.1.0`). |
-| `LICENSE` | The project licence. Ecosystem default: **Apache-2.0** (the runtime `urirun` is MIT). |
+| `LICENSE` | The project licence — **Apache-2.0** across the ecosystem. Pure website repos may omit it (a site is content, not a licensed library). |
 | `CONTRIBUTING.md` | How to contribute; points back to this standard. |
 | `TODO.md` | Recommended — the live backlog. |
 
