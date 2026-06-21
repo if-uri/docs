@@ -69,7 +69,13 @@ the URI is configured directly from the project's own metadata, from PyPI or loc
 Pointed at the [tellmesh](https://github.com/) capability packs unchanged, urirun adopted
 **18 packs into one registry — 95 URI routes** across 21 schemes (`browser`, `kvm`, `llm`,
 `ocr`, `rdp`, `stepper`, `stt`, `him`, `screen`, `vql`, …), all passing `urirun validate`.
+Across the full set, **113 of 116 routes dispatch** through the runtime once handlers are
+hydrated.
 
-One pack was skipped: a `shell://{command}` pattern carries only an authority, while
-bindings.v2 requires `scheme://host/resource/kind/operation`. Such a URI must add resource
-and operation segments to be adopted — the grammar is the contract.
+Templated mid-path segments route too: `kvm://{host}/monitor/{monitor}/query/screenshot`
+resolves from a concrete `…/monitor/2/…` URI — urirun falls back from an exact segment to a
+single `{param}` key, binds the value and passes it to the handler (exact matches win).
+
+One pattern was skipped: `shell://{command}` carries only an authority, while bindings.v2
+requires `scheme://host/resource/kind/operation`. Such a URI must add resource and operation
+segments to be adopted — the grammar is the contract.
