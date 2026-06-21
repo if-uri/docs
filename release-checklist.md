@@ -8,11 +8,17 @@ versions.
 ## 1. Runtime (`urirun`)
 
 - [ ] Tests green on the target commit (`make test` in `if-uri/urirun`).
-- [ ] Tag the release (for example `v0.3.14`) and push the tag.
-- [ ] Update install snippets to the new tag across docs, the website and
-      connector READMEs:
-      `pip install "git+https://github.com/if-uri/urirun.git@<tag>#subdirectory=adapters/python"`.
-- [ ] CHANGELOG and VERSION updated.
+- [ ] Versions bumped in one move: `make release-bump V=<x.y.z>` (then
+      `make version-check` is green across all five version files).
+- [ ] **CHANGELOG frozen**: fold the `## [Unreleased]` section into `## [<x.y.z>]`
+      and dedupe any auto-fix-daemon entries (the linter appends mislabelled
+      `## [0.1.10]` ticket blocks — collapse them) so the release section is the
+      single source of truth.
+- [ ] Tag and push: `make release` (tags `v<x.y.z>` from `adapters/python/VERSION`,
+      pushes; CI `release.yml` builds + publishes to PyPI).
+- [ ] Move install pins to the new tag in one move (only *after* the tag exists):
+      `bash if-uri/ifuri-com/scripts/apply-release-pins.sh v<x.y.z>` — sweeps docs,
+      the website, `get-urirun-com` node/host, app and connector pyproject pins.
 
 ## 2. Connector packages
 
