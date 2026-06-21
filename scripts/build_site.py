@@ -3,9 +3,12 @@
 # Part of the ifURI solution.
 
 """Render the ifURI docs (markdown) into a brand static site for docs.ifuri.com."""
-import os, re, html, sys, shutil, pathlib
+import os, re, html, sys, shutil, pathlib, json
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=pathlib.Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/"_site"
+BASE="https://docs.ifuri.com"
+SITE_DESC="ifURI documentation — URI runtime, commands, registry & bindings, naming, transports, MCP/A2A and error references for urirun."
+OG_IMAGE="https://ifuri.com/assets/og-ifuri.png"
 ORDER=["index","getting-started","naming","commands","registry-and-bindings","connectors","connector-authoring","generating-connectors","transports","mcp","errors","host-node-lan","novnc-demo","project-structure-audit-2026-06-20","logo","roadmap","release-checklist"]
 def md(text):
     out=[];i=0;lines=text.replace("\r","").split("\n");n=len(lines)
@@ -54,9 +57,17 @@ for s in slugs:
 nav="".join(f'<a href="{s}.html">{html.escape(titles[s])}</a>' for s in slugs)
 def page(slug):
     body=md_to_html_links(md((ROOT/f"{slug}.md").read_text(encoding="utf-8")))
+    url=f"{BASE}/{slug}.html"
+    ld=json.dumps({"@context":"https://schema.org","@type":"WebSite","name":"ifURI docs","url":f"{BASE}/","description":SITE_DESC},ensure_ascii=False)
     return f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(titles[slug])} · ifURI docs</title><meta name="theme-color" content="#1E1B4B">
+<meta name="description" content="{html.escape(SITE_DESC)}">
+<link rel="canonical" href="{url}">
+<meta property="og:title" content="{html.escape(titles[slug])} · ifURI docs"><meta property="og:description" content="{html.escape(SITE_DESC)}">
+<meta property="og:image" content="{OG_IMAGE}"><meta property="og:url" content="{url}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{OG_IMAGE}">
+<script type="application/ld+json">{ld}</script>
 <link rel="icon" href="https://ifuri.com/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 </head><body>
 <header><a class="brand" href="index.html">ifURI <span>docs</span></a>
