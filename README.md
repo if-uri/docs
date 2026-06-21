@@ -44,3 +44,7 @@ is now the public documentation home for the ifURI organization.
 - `github.com/if-uri/marketing`
 - `github.com/if-uri/logo`
 - `github.com/if-uri/urirun`
+
+## License
+
+Released under the terms in [LICENSE](LICENSE).
