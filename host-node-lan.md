@@ -89,6 +89,40 @@ Every call - local or remote - is recorded with its envelope, payload, status,
 time and source. Use the log to confirm which machine executed each step and to
 review cross-node activity after a flow runs.
 
+## 6. Drive a node from natural language (closed loop)
+
+A node only ever runs the routes it serves, so an LLM can plan against that exact
+surface. `host ask` turns a sentence into a URI flow, constrained to the target
+node's live `/routes`, and dispatches it:
+
+```bash
+urirun host ask laptop "audit this box: read uname, list top processes, log a summary" --execute
+```
+
+The point is the **feedback edge**. When a step's payload is wrong the node answers
+with its own validation error (`'text' is a required property`); a closed loop feeds
+that back to the planner, which corrects the flow and retries — so the AI repairs
+itself instead of emitting a plausible-but-wrong plan and stopping. Steps chain with
+the `<field>_from` convention (`{text_from: "find_py.result.stdout"}`) — an earlier
+step's output becomes a later step's input, no string templating. See
+[example 37](https://github.com/if-uri/examples) for three loop patterns: self-repair,
+goal-verify (probe the node, re-plan until met), and a one-action-at-a-time agent.
+
+### Deploy, merge, probe — keep the surface honest
+
+- `urirun host deploy <node> --bindings b.json [--code h.py] --merge` pushes a
+  connector onto a running node over a signed request (no SSH). `--merge` **adds** the
+  routes instead of replacing the served registry, so the node keeps its other surfaces.
+- `urirun host probe <node>` snapshots the surface (a registry **etag** + generation,
+  also reported in `/health` and `/routes`), runs every route pinned to that snapshot,
+  and reports whether the surface stayed stable — a registry hot-swapped under a test
+  answers `409` instead of silently running against a different surface. With
+  `--execute` it flags routes that return a degraded/mock result (`driver: "mock"`) as
+  `DEGR`, so a node that "passes" without doing the real work is visible.
+- `urirun connectors verify <pkg>` is the pre-deploy gate: it imports a connector,
+  validates its bindings and **resolves every route's handler**, so a connector never
+  advertises a route the node cannot actually run.
+
 ## Troubleshooting
 
 - **No peers in `discover`** - the machines are not in the same broadcast

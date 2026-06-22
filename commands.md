@@ -101,6 +101,28 @@ urirun compat check --json
 `compat check` returns non-zero until every replacement package or app-layer
 replacement is installed.
 
+## Drive a node from natural language, deploy and probe
+
+```bash
+# NL -> URI flow constrained to the node's live routes -> dispatch (closed loop)
+urirun host ask laptop "audit this box and log a summary" --execute
+
+# push a connector onto a running node (signed, no SSH); --merge ADDS routes
+urirun host deploy laptop --bindings b.json --code handler.py --merge --identity ~/.ssh/id_ed25519
+
+# snapshot the surface (registry etag) + test every route pinned to it; detects a
+# hot-swapped registry (409) and, with --execute, degraded/mock results (DEGR)
+urirun host probe laptop --execute
+
+# pre-deploy gate: import a connector, validate bindings, resolve EVERY handler
+urirun connectors verify ./urirun-connector-thing
+```
+
+`host ask` plans against the node's `/routes`; a failed step's node error feeds back
+so the planner repairs the flow. `host probe` reports STABLE vs CHURNED so testing a
+node whose registry keeps changing yields an honest verdict. See
+[Host and node on a LAN](host-node-lan.md).
+
 ## Versioned commands
 
 ```bash
