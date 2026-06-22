@@ -29,6 +29,8 @@ agent tool projection.
   `error://` addresses, fix hints and error-to-ticket.
 - [Host and node on a LAN](host-node-lan.md) - operator guide for host/node
   communication and flow routing across a local network.
+- [Security and policy](security-and-policy.md) - default-deny execution, where
+  restrictions are set, and how to read a node's live policy.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
   inside noVNC desktops across the LAN.
 - [Project structure audit](project-structure-audit-2026-06-20.md) - current
