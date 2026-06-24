@@ -29,6 +29,8 @@ agent tool projection.
   `error://` addresses, fix hints and error-to-ticket.
 - [Host and node on a LAN](host-node-lan.md) - operator guide for host/node
   communication and flow routing across a local network.
+- [Node types and connections](node-types.md) - the six node types (server, pc,
+  rdp, smartphone, browser, web), each with its own transport and configuration.
 - [Security and policy](security-and-policy.md) - default-deny execution, where
   restrictions are set, and how to read a node's live policy.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
