@@ -67,14 +67,47 @@ Two enrollment stages:
    connector.
 
 ```bash
-urirun-android-node serve     # distribution service (port 8195): QR + APK + bootstrap
+urirun-android-node serve     # distribution + relay service (port 8195)
 ```
+
+The service on port 8195 is the distribution hub for every browser-based client:
+
+| Path | Serves |
+|------|--------|
+| `GET /` | webpage control client (no install — auto-registers on open) |
+| `GET /plugins` | JSON list of available clients (chrome, firefox, webpage) |
+| `GET /plugins/chrome.zip` | Chrome extension (load unpacked in `chrome://extensions`) |
+| `GET /plugins/firefox.zip` | Firefox extension (load in `about:debugging`) |
+| `GET /qr.png` `GET /bootstrap.sh` `GET /apk/` | QR, Termux bootstrap, APK download |
 
 In the dashboard: **Smartphone → Uruchom serwis android-node → Pokaż QR**. Scan with the
 phone. Connected phones appear in the "web node" list; after installing the APK, save them
 as a "mobile node".
 
 See also [Android Nexus 7 example](../examples/47-android-nexus7-node/README.md).
+
+## 📄 webpage relay — page registers itself (no install)
+
+The simplest browser node: **opening the android-node page (port 8195) in any browser**
+makes that browser/tab a controllable node — it appears in the dashboard nodes list
+**automatically**, with no "save" step. It is transient (present while the page is open,
+gone when closed) and tagged `webpage`.
+
+How it works: the page runs a small JS client that registers itself
+(`POST /api/webpage-node/register`), then long-polls for actions
+(`/api/webpage-node/poll/<id>`) and posts results. The host controls it by running a
+`webpage://<id>/...` URI through the relay (`POST /api/webpage-node/relay/<id>/run`), which
+queues the action for the page to execute. Routes include `page/query/info`,
+`page/command/navigate`, `page/command/eval`, `camera/command/start`, `sensor/...`,
+`iframe/command/open`.
+
+The dashboard `summary()` merges these live webpage nodes into the nodes list (so they show
+up the moment a device opens the page), and the **✕ Usuń** button forgets a transient node
+in the service (`/api/webpage-node/forget`) or deletes a persistent node from host config.
+
+This is distinct from **Browser Debug** below — webpage relay needs no debug port and works
+on phones; CDP (Browser Debug) gives full whole-browser control but needs a desktop browser
+launched with `--remote-debugging-port`.
 
 ## 🌐 browser — whole browser (CDP)
 
