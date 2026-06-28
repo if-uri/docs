@@ -32,12 +32,12 @@ ksef://api/invoices/command/post        ->  POST {base}/invoices
 - `{param}` placeholders in the path are templated from the payload at run time and
   validated by an `inputSchema` derived from the path parameters;
 - auth and crypto stay as the one referenced helper — pair this with
-  [`secret://`](secrets.html) so credentials resolve lazily at the executor boundary.
+  [`secret://`](secrets.md) so credentials resolve lazily at the executor boundary.
 
 ## Related
 
 `add-openapi` is the OpenAPI front end to urirun's declarative HTTP connectors.
 For a hand-written spec, `urirun connectors from-spec <spec.toml|json>` turns an
 `environments` + `routes` table into the same `fetch` bindings — config, not code.
-See [generating connectors](generating-connectors.html) and
-[transports](transports.html).
+See [generating connectors](generating-connectors.md) and
+[transports](transports.md).

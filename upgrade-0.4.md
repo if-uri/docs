@@ -13,7 +13,7 @@ bump; the rest of this page is optional new capability.
 
 The same `@v0.3.14 → @v0.4.0` change applies to connector `pyproject.toml` pins,
 `get.urirun.com` (`URIRUN_REF`) and the ifURI app. Across this repo set it is one
-command — `apply-release-pins.sh v0.4.0` (see the [release checklist](release-checklist.html)).
+command — `apply-release-pins.sh v0.4.0` (see the [release checklist](release-checklist.md)).
 
 ## 2. What stays the same
 
@@ -43,10 +43,10 @@ urirun compat check        # which modules moved to runtime/host/connector or to
 
 ## 4. New capabilities (opt in)
 
-- **[Adopt any package as URI](adopt-as-uri.html)** — `urirun adopt-pack <manifest|dir|package>`
+- **[Adopt any package as URI](adopt-as-uri.md)** — `urirun adopt-pack <manifest|dir|package>`
   gives an existing package a URI surface with zero-to-minimal change
   (`[tool.urirun]` in pyproject, a `"urirun"` key in package.json, or CLI entry points).
-- **[`error://` diagnostics](errors.html)** — standardized error codes, a `@capture`
+- **[`error://` diagnostics](errors.md)** — standardized error codes, a `@capture`
   decorator and an `/errors` route on nodes.
 - **Param-aware routing** — concrete URIs resolve templated mid-path `{param}`
   segments and bind the value to the handler.
@@ -56,4 +56,4 @@ urirun compat check        # which modules moved to runtime/host/connector or to
 - **Connector SDKs in 9 more languages** (Go, PHP, Ruby, Perl, Bash, Rust,
   TypeScript, Java, C#) beside Python/JS.
 
-See the [0.4 work summary](work-summary-2026-06-21.html) for the full surface.
+See the [0.4 work summary](work-summary-2026-06-21.md) for the full surface.

@@ -1,14 +1,14 @@
 # ifURI / urirun work summary — 2026-06-21 (urirun 0.4)
 
 What shipped to `main` since the v0.3.14 tag — the surface of the upcoming
-**urirun 0.4** release. This continues the [2026-06-20 summary](work-summary-2026-06-20.html).
+**urirun 0.4** release. This continues the [2026-06-20 summary](work-summary-2026-06-20.md).
 
 ## Runtime (`urirun`)
 
 - **`error://` engine** on nodes: standardized error codes mapped to established
   standards (gRPC status, POSIX errno, HTTP, RFC 9457 Problem Details), a
   `@capture` decorator, an `/errors` route and deep links to
-  [docs.ifuri.com/errors](errors.html). Errors become searchable, ticketable URIs.
+  [docs.ifuri.com/errors](errors.md). Errors become searchable, ticketable URIs.
 - **Param-aware routing**: templated mid-path segments like
   `kvm://{host}/monitor/{monitor}/query/screenshot` now resolve from a concrete URI
   and bind the value to the handler; exact matches still take priority.
@@ -25,7 +25,7 @@ What shipped to `main` since the v0.3.14 tag — the surface of the upcoming
 ## Adopt any package as URI (the moat)
 
 > Give an existing application a URI surface with the least possible change — see
-> [docs.ifuri.com/adopt-as-uri](adopt-as-uri.html).
+> [docs.ifuri.com/adopt-as-uri](adopt-as-uri.md).
 
 Three paths, zero-to-minimal change: (1) **zero change** — `console_scripts`/`bin`
 become `cli://` routes; (2) **manifest bridge** — a capability manifest maps 1:1 to
@@ -41,7 +41,7 @@ A runnable cross-pack flow (screen → OCR/VQL → LLM → alert) ships as
 
 ## Ecosystem & process
 
-- **Documentation standard** ([repo-standards](repo-standards.html)) enforced by
+- **Documentation standard** ([repo-standards](repo-standards.md)) enforced by
   `make docs-lint` and a per-repo CI workflow — 31/31 repos conform.
 - **One-command deploy**: `make deploy-all` ships every web property sequentially;
   `get-*`/site repos run post-deploy download-and-run tests.
