@@ -8,6 +8,7 @@ is now the public documentation home for the ifURI organization.
 ## Contents
 
 - `index.md` - documentation index
+- `source-of-truth.md` - which docs are authoritative, generated or historical
 - `work-summary-2026-06-20.md` - current cross-repository implementation status
 - `getting-started.md` - first install and registry workflow
 - `naming.md` - what uses `urirun` and how the repository namespace migrated

@@ -23,8 +23,9 @@
       (`host-node-lan.md`)
 - [x] Add a noVNC demo guide that links to `if-uri/examples/11-novnc_lan_flow`.
       (`novnc-demo.md`)
-- [x] Keep runtime versions in docs aligned with the latest tested `urirun`
-      GitHub tag. (pinned to `v0.3.14` across all install snippets)
+- [x] Keep active runtime install snippets aligned with the latest tested
+      `urirun` release. Active docs use `urirun>=0.4.190`; historical upgrade
+      and work-summary pages may still mention older tags as migration context.
 
 ## Cross-repository hygiene
 

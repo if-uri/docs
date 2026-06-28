@@ -48,7 +48,7 @@ the registry adapter.
 and stream-style calls. Install the optional dependency set when using it:
 
 ```bash
-pip install "urirun[grpc] @ git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
+pip install "urirun[grpc]>=0.4.190"
 ```
 
 ## MCP and A2A

@@ -68,7 +68,7 @@ git@github.com:if-uri/urirun.git
 ```
 
 ```bash
-pip install "git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
+pip install "urirun>=0.4.190"
 npm install github:if-uri/urirun
 ```
 

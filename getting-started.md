@@ -1,9 +1,9 @@
 # Getting started
 
-Install directly from GitHub:
+Install the current runtime:
 
 ```bash
-pip install "git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
+pip install "urirun>=0.4.190"
 ```
 
 The installed CLI and Python import namespace are both `urirun`.

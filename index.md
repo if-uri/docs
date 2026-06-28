@@ -8,6 +8,8 @@ agent tool projection.
 
 - [Getting started](getting-started.md) - install from GitHub, scan artifacts,
   compile a registry, and run a URI.
+- [Documentation source of truth](source-of-truth.md) - current docs,
+  generated snapshots and historical notes.
 - [Work summary 2026-06-20](work-summary-2026-06-20.md) - current
   cross-repository status for `urirun`, connectors, ifURI App and examples.
 - [Naming](naming.md) - what uses `urirun` and how the repository namespace
@@ -47,7 +49,7 @@ agent tool projection.
 Use v2 for new projects:
 
 ```bash
-pip install "git+https://github.com/if-uri/urirun.git@v0.3.14#subdirectory=adapters/python"
+pip install "urirun>=0.4.190"
 urirun scan ./project --out generated/bindings.v2.json --registry-out generated/registry.json
 urirun list generated/registry.json
 ```
