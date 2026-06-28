@@ -8,6 +8,8 @@ is now the public documentation home for the ifURI organization.
 ## Contents
 
 - `index.md` - documentation index
+- `architecture.md` - current system architecture: hub, contracts, router,
+  flow, services, widgets, artifacts, connectors and nodes
 - `source-of-truth.md` - which docs are authoritative, generated or historical
 - `work-summary-2026-06-20.md` - current cross-repository implementation status
 - `getting-started.md` - first install and registry workflow

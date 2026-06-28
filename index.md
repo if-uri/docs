@@ -8,6 +8,8 @@ agent tool projection.
 
 - [Getting started](getting-started.md) - install from GitHub, scan artifacts,
   compile a registry, and run a URI.
+- [Current architecture](architecture.md) - current system shape: hub,
+  contracts, connector router, flow, services, widgets, artifacts and nodes.
 - [Documentation source of truth](source-of-truth.md) - current docs,
   generated snapshots and historical notes.
 - [Work summary 2026-06-20](work-summary-2026-06-20.md) - current

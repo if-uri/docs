@@ -8,12 +8,18 @@ contracts, or autonomous host/node behavior.
 
 These files describe current behavior and should be kept in sync with code:
 
-- `docs/index.md` and `docs/README.md` - public documentation entry points.
+- `docs/index.md`, `docs/README.md` and `docs/architecture.md` - public
+  documentation entry points and current ecosystem architecture.
 - `docs/getting-started.md`, `docs/commands.md`,
   `docs/registry-and-bindings.md` - runtime and registry basics.
 - `docs/connectors.md`, `docs/connector-authoring.md`,
   `docs/generating-connectors.md` - connector package shape and discovery.
 - `urirun/README.md` - current local CLI and host/node operator guide.
+- `urirun/docs/ARCHITECTURE.md` - current implementation architecture for the
+  runtime hub, contracts, router, flow, services, widgets, artifacts,
+  connectors and nodes.
+- `urirun/docs/ACTIVE_REFACTOR_PLAN.md` - execution order for the current
+  slimming and extraction work.
 - `urirun/docs/HOST_DASHBOARD_CHAT.md` - chat dashboard request lifecycle,
   target resolution, deterministic intents, recovery and service behavior.
 - `urirun/docs/URIRUN_PACKAGE_SPLIT_PLAN.md` - the current target is slim-core:

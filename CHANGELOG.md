@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Add a current architecture page covering the split between the `urirun` hub,
+  contracts, connector router, flow, services, widgets, artifacts, connectors
+  and nodes.
 - Add the 2026-06-20 project-structure audit page and link it into the generated
   docs navigation.
 - Add the 2026-06-20 cross-repository work summary.
