@@ -36,7 +36,7 @@ shipping a second implementation.
 prompt / CLI / API
   -> route registry and target selection
   -> flow planning or loaded flow
-  -> router diagnosis
+  -> router diagnosis and plan acceptance
   -> node, service or connector execution
   -> contract-shaped result
   -> verification, artifact/widget/log
@@ -45,7 +45,34 @@ prompt / CLI / API
 
 Before an autonomous action runs, `urirun-connector-router` should know whether
 the route runs on the host, a selected `node:*`, a `service:*`, or is blocked by
-a missing connector, unreachable transport or unsafe command.
+a missing connector, unreachable transport or unsafe command. The router exposes
+both `plan/query/diagnose` and `plan/query/accept`: LLM, recall or heuristics may
+propose candidate flows, but the same deterministic acceptance gate decides
+whether a plan can execute.
+
+Desktop environment analysis is part of the pre-action path. For screenshot and
+UI prompts the system grounds the plan in `display/query/info`,
+`env/query/profile`, `twin://*/env/query/inventory`, route ownership and Digital
+Twin memory. Contracts can declare env-enum domains such as
+`monitor -> env:monitors.id`; the flow selection gate resolves explicit values,
+single-option defaults, fingerprint-keyed preferences, or emits typed
+`needs-selection`. On GNOME/Wayland multi-monitor hosts, KVM captures all
+monitors through Mutter `RecordArea` and returns monitor metadata plus the
+captured image dimensions, so the chat artifact describes the actual surface.
+
+## URI as the stable contract boundary
+
+ifURI has two translations around the same URI:
+
+- **contract -> code**: `contracts.json` and bindings generate handler
+  signatures, JSON Schema, SDK/MCP/A2A surfaces and lint gates;
+- **query/command -> runtime -> JSON**: a flow step is routed to `runsOn`,
+  executed through an adapter, and returned as a portable JSON envelope.
+
+The contract is the shared invariant across both translations. A URI such as
+`kvm://host/cdp/page/command/navigate` is not only an RPC name: the same contract
+guards generated code, effect class (`query` vs `command`), optional inverse and
+the wire envelope returned by host, node or service execution.
 
 ## Object model
 
@@ -84,6 +111,8 @@ Immediate architectural risks:
 
 - Runtime architecture:
   [if-uri/urirun docs/ARCHITECTURE.md](https://github.com/if-uri/urirun/blob/main/docs/ARCHITECTURE.md)
+- Autonomy architecture:
+  [if-uri/urirun docs/AUTONOMY_ARCHITECTURE.md](https://github.com/if-uri/urirun/blob/main/docs/AUTONOMY_ARCHITECTURE.md)
 - Component boundaries:
   [if-uri/urirun docs/COMPONENTS.md](https://github.com/if-uri/urirun/blob/main/docs/COMPONENTS.md)
 - URI object model:
