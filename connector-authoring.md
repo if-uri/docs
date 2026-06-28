@@ -174,6 +174,43 @@ the backend. Use this when your connector mirrors an existing host capability;
 write standalone logic only when there is no backend equivalent (e.g.
 `time-tools`, `uuid`). The boundary is tracked by `urirun compat list`.
 
+## 8. Guard reuse with a contract
+
+A connector is meant to be **reused** — dropped into other flows and examples. The risk:
+its output shape drifts (a renamed field, an int that becomes a string) and silently
+corrupts every downstream step. The fix is a **contract**: declare the route's output
+shape, effect class, reversibility and error taxonomy once, and let it guard the flow.
+
+```python
+from urirun_contract import Contract, conform, envelope_violation
+
+CONTRACTS = {
+    "entry/command/append": Contract(
+        version="v1", effect="command", reversible=False,
+        inp={"text": "?str", "tag": "?str"},
+        out={"ok": "const:true", "connector": "const:notes", "action": "const:append",
+             "id": "str", "count": "int"},
+        errors=("precondition-unmet",),
+        examples=({"payload": {"text": "x"}, "result": {...}},)),
+}
+conform(CONTRACTS)                       # gate the contract: effect↔verb, examples, reversible
+
+env = urirun.run(uri, registry, payload, mode="execute")
+problem = envelope_violation(CONTRACTS[route], env["result"]["value"])
+if problem:
+    raise RuntimeError(f"contract: {problem}")   # caught at the flow boundary, not downstream
+```
+
+The same declaration lives as a neutral `contracts.json`, which also drives the **JS and Go**
+envelope guards (`urirun-contract/sdk/js`, `sdk/go`) — so a Python connector reused behind a
+JS or Go flow is guarded identically. `python ci/scaffold_contract.py <connector-dir>` bootstraps
+a conforming skeleton from the handler routes; `ci/fleet_coverage.py` ratchets which connectors
+still lack a contract for their mutating routes.
+
+Runnable end-to-end: [`examples/50-contract-guarded-flow/`](../examples/50-contract-guarded-flow/)
+(honest flow passes, a drifted handler is caught). Full mechanism + gates:
+[`urirun-contract/ARCHITECTURE.md`](../urirun-contract/ARCHITECTURE.md).
+
 ## Next steps
 
 - [Connectors](connectors.md) - install from the hub, package shape, catalog
