@@ -1,6 +1,12 @@
 # Changelog
 
+This changelog records source documentation changes for the public docs site.
+Historical implementation reports are linked from the index and source-of-truth
+pages instead of being duplicated here.
+
 ## [Unreleased]
+
+Current unreleased documentation updates are grouped below.
 
 ### Added
 - Add a current architecture page covering the split between the `urirun` hub,

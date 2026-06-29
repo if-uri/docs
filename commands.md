@@ -1,5 +1,9 @@
 # Commands
 
+Common CLI entry points for scanning, compiling, running, installing
+connectors, inspecting diagnostics, driving host/node workflows and using
+versioned commands.
+
 ## v2 CLI
 
 `urirun` defaults to the v2 schema-first runtime.
@@ -103,18 +107,21 @@ replacement is installed.
 
 ## Drive a node from natural language, deploy and probe
 
+These commands close the host/node loop: plan from natural language, deploy
+connector changes, probe registry stability and verify connector packages.
+
 ```bash
-# NL -> URI flow constrained to the node's live routes -> dispatch (closed loop)
+: "NL -> URI flow constrained to the node's live routes -> dispatch (closed loop)"
 urirun host ask laptop "audit this box and log a summary" --execute
 
-# push a connector onto a running node (signed, no SSH); --merge ADDS routes
+: "push a connector onto a running node (signed, no SSH); --merge ADDS routes"
 urirun host deploy laptop --bindings b.json --code handler.py --merge --identity ~/.ssh/id_ed25519
 
-# snapshot the surface (registry etag) + test every route pinned to it; detects a
-# hot-swapped registry (409) and, with --execute, degraded/mock results (DEGR)
+: "snapshot the surface registry etag and test every route pinned to it"
+: "detects a hot-swapped registry and degraded or mock results with --execute"
 urirun host probe laptop --execute
 
-# pre-deploy gate: import a connector, validate bindings, resolve EVERY handler
+: "pre-deploy gate: import a connector, validate bindings, resolve every handler"
 urirun connectors verify ./urirun-connector-thing
 ```
 

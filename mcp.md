@@ -70,8 +70,10 @@ Example:
 
 ```bash
 ifuri-app urirun-mcp tools --registry generated/registry.json
-# -> {"ok": true, "tools": [{"name": "sys_local_echo_hello", "inputSchema": {...}}, ...]}
 ```
+
+A successful response includes `{"ok": true, "tools": [...]}` with sanitised
+tool names and JSON Schema inputs.
 
 ### 4. Serve over stdio → a client connects
 - `ifuri-app urirun-mcp serve --registry generated/registry.json` starts an **MCP stdio server**

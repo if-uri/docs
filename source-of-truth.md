@@ -10,6 +10,8 @@ These files describe current behavior and should be kept in sync with code:
 
 - `docs/index.md`, `docs/README.md` and `docs/architecture.md` - public
   documentation entry points and current ecosystem architecture.
+- `docs/quality-and-docs-audit-2026-06-29.md` - current cross-repository
+  quality, stale-documentation and semcod-tooling audit.
 - `docs/getting-started.md`, `docs/commands.md`,
   `docs/registry-and-bindings.md` - runtime and registry basics.
 - `docs/connectors.md`, `docs/connector-authoring.md`,
@@ -30,8 +32,9 @@ These files describe current behavior and should be kept in sync with code:
   historical context.
 - `urirun-contract/ARCHITECTURE.md` - contract kernel architecture, fleet
   coverage, compatibility gates and contract roadmap.
-- `URI_ECOSYSTEM_ATOMIZATION_AUDIT.md` - current cross-repository audit and
-  refactoring plan from 2026-06-28.
+- `URI_ECOSYSTEM_ATOMIZATION_AUDIT.md` - 2026-06-28 atomization snapshot. Use
+  it as predecessor context; the 2026-06-29 quality audit supersedes it for
+  documentation freshness and semcod-tooling status.
 
 ## Generated Snapshots
 
@@ -54,6 +57,7 @@ operational contract:
 
 - `docs/work-summary-*`.
 - `docs/project-structure-audit-*`.
+- `URIRUN_CONTRACT_REFACTORING_REPORT.md`.
 - `urirun/docs/RELEASE-extracted-packages.md`.
 - old `CHANGELOG.md` sections and generated release fragments.
 - lower historical sections of `urirun/docs/URIRUN_PACKAGE_SPLIT_PLAN.md`.

@@ -11,7 +11,10 @@ is now the public documentation home for the ifURI organization.
 - `architecture.md` - current system architecture: hub, contracts, router,
   flow, services, widgets, artifacts, connectors and nodes
 - `source-of-truth.md` - which docs are authoritative, generated or historical
-- `work-summary-2026-06-20.md` - current cross-repository implementation status
+- `quality-and-docs-audit-2026-06-29.md` - current quality, docs freshness and
+  semcod-tooling audit
+- `work-summary-2026-06-20.md` - historical cross-repository implementation
+  status
 - `getting-started.md` - first install and registry workflow
 - `naming.md` - what uses `urirun` and how the repository namespace migrated
 - `commands.md` - CLI commands
@@ -23,7 +26,7 @@ is now the public documentation home for the ifURI organization.
 - `errors.md` - `error://` runtime errors, search, fix hints and ticketing
 - `host-node-lan.md` - operator guide for host/node communication across a LAN
 - `novnc-demo.md` - noVNC demo guide for the multi-computer URI flow
-- `project-structure-audit-2026-06-20.md` - repository map and next
+- `project-structure-audit-2026-06-20.md` - historical repository map and
   refactor/test priorities
 - `logo.md` - generated SVG logo assets and usage notes
 - `roadmap.md` - planned improvements

@@ -7,14 +7,28 @@ configuration. Pick the type that matches the machine or device.
 The dashboard surfaces all of these under **Nodes → ➕ Dodaj node (wybierz typ
 połączenia)**, and a live copy of this guide is served at `/docs/nodes`.
 
+Originally this page documented six broad types. The current host registry uses
+ten canonical node types and keeps the older names as aliases:
+
+- `server`, `pc`, `rdp`, `smartphone`
+- `browser-debug`, `browser-chrome-plugin`, `browser-firefox-plugin`
+- `webpage`, `api`, `device`
+
+Compatibility aliases include `browser` → `browser-debug` and `web` /
+`webnode` → `webpage`.
+
 | Type | Transport | Knowledge needed | Connector |
 |------|-----------|------------------|-----------|
 | 🖥️ server | shell / SSH | SSH, remote install | get-node + shell |
 | 💻 pc | app + shell | desktop, terminal | get-node + kvm |
 | 🪟 rdp | remote desktop (RDP) | RDP, Windows login | kvm / rdp |
 | 📱 smartphone | web → APK/Termux | app install, LAN | android-node + adb |
-| 🌐 browser | DevTools (CDP) | launch with debug port | webnode |
-| 📄 web | HTML/JS on a page | CDP + tab selection | webnode (page scope) |
+| 🌐 browser-debug | DevTools (CDP) | launch with debug port | webnode / browser-control |
+| 🧩 browser-chrome-plugin | Chrome extension | extension id, node URL | chrome-plugin |
+| 🧩 browser-firefox-plugin | Firefox extension | extension id, node URL | firefox-plugin |
+| 📄 webpage | HTML/JS page relay | android-node page or page bridge | webpage / webnode page scope |
+| 🔌 api | HTTP/API endpoint | base URL, auth, optional OpenAPI | http-api / fetch / openapi |
+| 🧩 device | multi-interface device | APIs/protocols, auth, capabilities | camera / rtsp / ssh / smb / mqtt |
 
 ---
 
@@ -59,8 +73,8 @@ On the desktop, start the node (like a PC) and save the node with URL `http://HO
 
 Two enrollment stages:
 
-1. **Web node (immediately):** start the android-node service and open its URL in the
-   phone's browser. The phone is **automatically** added as a `web` node — controlled
+1. **Webpage node (immediately):** start the android-node service and open its URL in the
+   phone's browser. The phone is **automatically** added as a `webpage` node — controlled
    via JS on the open page (navigate, eval). Nothing to install.
 2. **Mobile node (full):** from that page you download the APK or run the Termux script.
    The phone becomes a full node (port 8765): files, system, input — via the `adb`
@@ -109,7 +123,7 @@ This is distinct from **Browser Debug** below — webpage relay needs no debug p
 on phones; CDP (Browser Debug) gives full whole-browser control but needs a desktop browser
 launched with `--remote-debugging-port`.
 
-## 🌐 browser — whole browser (CDP)
+## 🌐 browser-debug — whole browser (CDP)
 
 Control an entire browser through the Chrome DevTools Protocol: every tab (open / close /
 navigate), status, screenshots. Connector `webnode`, scope `browser`.
@@ -123,9 +137,28 @@ urirun run "webnode://browser/tabs/query/list" --entry-points --execute --allow 
 ```
 
 Save the node with endpoint `http://127.0.0.1:9222`. The dashboard form also shows a QR by
-default — scanning it on another device opens that browser as a web node (auto-registered).
+default — scanning it on another device opens that browser as a webpage node (auto-registered).
 
-## 📄 web — a single page (HTML/JS)
+## 🧩 browser-chrome-plugin — Chrome extension node
+
+Chrome plugin nodes control the active browser tab through an installed extension
+and relay URI calls back to a urirun node. Use this when a full CDP debug port is
+not available or when you want an extension-scoped browser capability.
+
+```bash
+urirun host add-node chrome-plugin http://127.0.0.1:8765 --kind browser-chrome-plugin
+```
+
+## 🧩 browser-firefox-plugin — Firefox extension node
+
+Firefox plugin nodes follow the same pattern as Chrome plugin nodes, but use a
+temporary or installed Firefox add-on as the browser-side bridge.
+
+```bash
+urirun host add-node firefox-plugin http://127.0.0.1:8765 --kind browser-firefox-plugin
+```
+
+## 📄 webpage — a single page (HTML/JS)
 
 Control **one page/tab**: navigate, eval JS, click by selector, type, screenshot.
 Connector `webnode`, scope `page`. Choose the tab with `WEBNODE_TARGET` (an id from the
@@ -140,4 +173,37 @@ WEBNODE_TARGET=<id> urirun run "webnode://page/command/navigate" \
 ```
 
 Save the node with the CDP endpoint and (optionally) the tab id. The dashboard form shows a
-QR by default for the page-as-web-node flow.
+QR by default for the page-as-webpage-node flow.
+
+## 🔌 api — configured HTTP/API endpoint
+
+API nodes represent external HTTP/REST/OpenAPI services, SaaS endpoints or local
+HTTP services. The host stores API metadata and credentials by reference, then
+projects URI calls such as `api://crm-api/main/command/request` onto the
+configured endpoint.
+
+```bash
+urirun host add-node crm-api https://api.example.test/v1 \
+  --kind api \
+  --api-id main \
+  --api-kind rest \
+  --auth-type bearer \
+  --auth-token TOKEN
+```
+
+Secrets are stored through `secret://keyring/urirun-node-api/<node>/<api>#credential`.
+
+## 🧩 device — multi-interface physical device
+
+Device nodes group several interfaces on one physical or embedded device: web UI,
+RTSP stream, SSH, SMB/NAS, GPIO, MQTT or vendor APIs. HTTP-like interfaces can be
+called through host-configured API routes; non-HTTP protocols return
+`connector_required` until the matching connector is installed.
+
+```bash
+urirun host add-node rpi-camera http://rpi.local \
+  --kind device \
+  --api '{"id":"panel","kind":"web","url":"http://rpi.local"}' \
+  --api '{"id":"stream","kind":"rtsp","role":"camera","url":"rtsp://rpi.local/live"}' \
+  --api '{"id":"ssh","kind":"ssh","url":"ssh://pi@rpi.local"}'
+```

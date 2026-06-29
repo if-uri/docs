@@ -9,7 +9,7 @@ OUT=pathlib.Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/"_site"
 BASE="https://docs.ifuri.com"
 SITE_DESC="ifURI documentation — URI runtime, commands, registry & bindings, naming, transports, MCP/A2A and error references for urirun."
 OG_IMAGE="https://ifuri.com/assets/og-ifuri.png"
-ORDER=["index","getting-started","upgrade-0.4","naming","commands","registry-and-bindings","connectors","connector-authoring","generating-connectors","adopt-as-uri","transports","openapi","mcp","secrets","errors","host-node-lan","novnc-demo","project-structure-audit-2026-06-20","logo","roadmap","repo-standards","release-checklist"]
+ORDER=["index","source-of-truth","quality-and-docs-audit-2026-06-29","getting-started","upgrade-0.4","naming","commands","registry-and-bindings","connectors","connector-authoring","generating-connectors","adopt-as-uri","transports","openapi","mcp","secrets","errors","host-node-lan","node-types","novnc-demo","project-structure-audit-2026-06-20","logo","roadmap","repo-standards","release-checklist"]
 def md(text):
     out=[];i=0;lines=text.replace("\r","").split("\n");n=len(lines)
     def inl(s):

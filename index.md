@@ -12,7 +12,12 @@ agent tool projection.
   contracts, connector router, flow, services, widgets, artifacts and nodes.
 - [Documentation source of truth](source-of-truth.md) - current docs,
   generated snapshots and historical notes.
-- [Work summary 2026-06-20](work-summary-2026-06-20.md) - current
+- [Active refactor plan](https://github.com/if-uri/urirun/blob/main/docs/ACTIVE_REFACTOR_PLAN.md) -
+  authoritative implementation refactor order for slim-core, connectors,
+  services, flow and host/node autonomy.
+- [Quality and docs audit 2026-06-29](quality-and-docs-audit-2026-06-29.md) -
+  current quality, stale-docs and semcod-tooling audit.
+- [Work summary 2026-06-20](work-summary-2026-06-20.md) - historical
   cross-repository status for `urirun`, connectors, ifURI App and examples.
 - [Naming](naming.md) - what uses `urirun` and how the repository namespace
   migrated.
@@ -33,16 +38,18 @@ agent tool projection.
   `error://` addresses, fix hints and error-to-ticket.
 - [Host and node on a LAN](host-node-lan.md) - operator guide for host/node
   communication and flow routing across a local network.
-- [Node types and connections](node-types.md) - the six node types (server, pc,
-  rdp, smartphone, browser, web), each with its own transport and configuration.
+- [Node types and connections](node-types.md) - current node types from the
+  host registry (`server`, `pc`, `rdp`, `smartphone`, browser plugin/debug
+  modes, `webpage`, `api`, `device`) and their aliases.
 - [Security and policy](security-and-policy.md) - default-deny execution, where
   restrictions are set, and how to read a node's live policy.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
   inside noVNC desktops across the LAN.
-- [Project structure audit](project-structure-audit-2026-06-20.md) - current
-  repository map, runtime boundary and next refactor/test priorities.
+- [Project structure audit](project-structure-audit-2026-06-20.md) -
+  historical repository map, runtime boundary and refactor/test priorities.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.
-- [Roadmap](roadmap.md) - practical TODO list for making the tool easier.
+- [Roadmap](roadmap.md) - user-facing usability TODOs; implementation
+  refactors live in the active refactor plan above.
 - [Release checklist](release-checklist.md) - coordinated release steps across
   runtime, connectors, examples and app docs.
 

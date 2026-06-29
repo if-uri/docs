@@ -1,5 +1,8 @@
 # TODO
 
+Tracked documentation work for the public docs tree. Active architecture and
+runtime refactors live in the urirun execution plan linked from the docs index.
+
 ## Documentation roadmap
 
 - [ ] Keep `project-structure-audit-2026-06-20.md` aligned with
