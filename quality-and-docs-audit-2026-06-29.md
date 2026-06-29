@@ -26,7 +26,7 @@ PYTHONPATH=/home/tom/github/semcod/redup/src \
     --no-community --min-lines 8
 
 python3 codebase_audit.py --root . --list --json
-python3 codebase_audit.py --root . --list --dimension all --fail-at 8
+python3 codebase_audit.py --root . --list --dimension all --fail-at 7
 ```
 
 ## Current state
@@ -56,14 +56,14 @@ Measured health:
   capability facts. It reports host `nvidia`, Linux kernel `6.17.0-40`,
   desktop tools including `ydotool`, `grim` and `scrot`, TestQL scenarios, ports
   and runtime capability flags.
-- `codebase_audit`: 13 findings total, grouped as `hardcoded: 7` and
-  `orchestration: 6`; severities are `{4: 1, 5: 5, 6: 6, 7: 1}`. No current
+- `codebase_audit`: 10 findings total, grouped as `hardcoded: 7` and
+  `orchestration: 3`; severities are `{2: 1, 3: 1, 4: 2, 5: 4, 6: 2}`. No current
   top-level findings for contract gaps, layering or duplicate kernels.
-  `--fail-at 8` is green; `--fail-at 7` correctly fails unless the current
-  findings are accepted through a baseline.
+  `--fail-at 7` is green after classifying generated `project/*` snapshots as
+  fixture context.
 - `redup` comparison between adapter scanner fallback and
-  `urirun-connector-scanner`: 203 cross matches and 3626 potential shared LOC.
-  This is the largest remaining single-source risk.
+  `urirun-connector-scanner`: 0 cross matches and 0 potential shared LOC after
+  replacing adapter fallback bodies with shims.
 
 ## Docs that need correction or reclassification
 
@@ -82,21 +82,17 @@ Measured health:
 
 The next refactors should not target line count alone. The active risks are:
 
-1. **Scanner real-source drift.** `redup` found heavy overlap between
-   `urirun/adapters/python/urirun_scanner` and `urirun-connector-scanner`.
-   Decide whether the connector package is the real source and turn the adapter
-   copy into a shim/fallback import, then add a single-source gate.
-2. **Hardcoded environment facts.** The remaining `codebase_audit` findings are
-   mostly absolute home paths, private LAN IPs, node aliases, model literals and
-   service ports. Production decisions should use inventory/config/memory or an
-   explicit payload; examples should label fixtures.
-3. **Large orchestration modules.** Highest current modules:
+1. **Hardcoded environment facts.** The remaining production-code findings are
+   model literals, service ports and localhost URLs. Node aliases, monitor
+   connectors, absolute home paths and private LAN IPs are now fixture-only
+   findings after removing the `lenovo` execution default from the app runtime
+   path.
+2. **Large orchestration modules.** Highest current modules:
    `urirun-connector-smart-crop/core.py`, `urirun-flow/flow_planner.py`,
-   `host/host_dashboard.py`, `camera/core.py`, `kvm/backends.py`,
-   scanner document/bridge modules, `chat_orchestrator.py` and
+   `host/host_dashboard.py`, `kvm/backends.py`, `chat_orchestrator.py` and
    `urirun_runtime/v2.py`. The right extraction unit is a typed URI capability,
    contract, service or twin query, not a prettier helper split.
-4. **Documentation freshness.** `docval` is green enough for a gate, but only if
+3. **Documentation freshness.** `docval` is green enough for a gate, but only if
    generated snapshots are excluded and historical docs are labeled.
 
 ## Semcod tools to adopt
