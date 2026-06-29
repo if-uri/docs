@@ -26,6 +26,7 @@ PYTHONPATH=/home/tom/github/semcod/redup/src \
     --no-community --min-lines 8
 
 python3 codebase_audit.py --root . --list --json
+python3 codebase_audit.py --root . --list --dimension all --fail-at 8
 ```
 
 ## Current state
@@ -55,9 +56,11 @@ Measured health:
   capability facts. It reports host `nvidia`, Linux kernel `6.17.0-40`,
   desktop tools including `ydotool`, `grim` and `scrot`, TestQL scenarios, ports
   and runtime capability flags.
-- `codebase_audit`: 17 findings total, grouped as `hardcoded: 7` and
-  `orchestration: 10`; severities are `{5: 5, 6: 7, 7: 5}`. No current
+- `codebase_audit`: 13 findings total, grouped as `hardcoded: 7` and
+  `orchestration: 6`; severities are `{4: 1, 5: 5, 6: 6, 7: 1}`. No current
   top-level findings for contract gaps, layering or duplicate kernels.
+  `--fail-at 8` is green; `--fail-at 7` correctly fails unless the current
+  findings are accepted through a baseline.
 - `redup` comparison between adapter scanner fallback and
   `urirun-connector-scanner`: 203 cross matches and 3626 potential shared LOC.
   This is the largest remaining single-source risk.
