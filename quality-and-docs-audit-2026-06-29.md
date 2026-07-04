@@ -56,8 +56,8 @@ Measured health:
   capability facts. It reports host `nvidia`, Linux kernel `6.17.0-40`,
   desktop tools including `ydotool`, `grim` and `scrot`, TestQL scenarios, ports
   and runtime capability flags.
-- `codebase_audit`: 9 findings total, grouped as `hardcoded: 7` and
-  `orchestration: 2`; severities are `{2: 1, 3: 1, 4: 2, 5: 4, 6: 1}`. No current
+- `codebase_audit`: 8 findings total, grouped as `hardcoded: 7` and
+  `orchestration: 1`; severities are `{2: 1, 3: 1, 4: 2, 5: 4}`. No current
   top-level findings for contract gaps, layering or duplicate kernels.
   `--fail-at 7` is green after classifying generated `project/*` snapshots as
   fixture context.
@@ -87,11 +87,11 @@ The next refactors should not target line count alone. The active risks are:
    connectors, absolute home paths and private LAN IPs are now fixture-only
    findings after removing the `lenovo` execution default from the app runtime
    path.
-2. **Large orchestration modules.** Current audit findings are
-   `host/host_dashboard.py` as the remaining large host orchestration module and
-   `_opencv_document_crop` in `urirun-connector-smart-crop/core.py` as the
-   remaining hot function. The right extraction unit is a typed URI capability,
-   contract, service or twin query, not a prettier helper split.
+2. **Large orchestration modules.** The current audit has no large module above
+   threshold; `_opencv_document_crop` in `urirun-connector-smart-crop/core.py`
+   remains as the only orchestration finding. The right extraction unit is a
+   typed URI capability, contract, service or twin query, not a prettier helper
+   split.
 3. **Documentation freshness.** `docval` is green enough for a gate, but only if
    generated snapshots are excluded and historical docs are labeled.
 
