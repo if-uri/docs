@@ -78,3 +78,28 @@ Dopoki `Odblokuj` zapisuje tylko `IFURI-210`, nastepny ticket `IFURI-230` z tym 
 ## Status na teraz
 
 Diagnoza jest potwierdzona w kodzie: obecny system pamieta decyzje per ticket, a oczekiwane zachowanie wymaga pamieci per typ zadania. Dlatego problem nadal wystepuje i samo klikanie `Odblokuj` nie naprawi go systemowo.
+
+## Resolution (verified 2026-07-08)
+
+**Naprawa wdrożona i działa.**
+
+- `decision_keys(ticket)` + `is_unblocked_for(ticket)` w `unblock_ledger.py` — pełne wsparcie kluczy typu (wait-gate/waiting/action:/goal:/source: + aliasy).
+- `record_unblock` zapisuje równolegle ticket_id + typy.
+- `_remember_unblock` w `work_queue.py` fetchuje ticket i przekazuje pełny kontekst.
+- `gates.runnable_gate()` short-circuituje na `is_unblocked_for` (z wyjątkiem `_NEVER_UNBLOCK`).
+- `watchdog._is_unblocked()` + `_ensure_wait_gate()` używają `is_unblocked_for` (nie tworzy powtarzalnych GATE dla odblokowanego typu).
+- Testy `test_unblock_persist.py` (8 testów) pokrywają dokładnie scenariusz regresji: odblokowanie IFURI-A typu X czyni IFURI-B tego samego typu runnable bez kolejnego kliku.
+- API: `GET /api/work/unblocks` zwraca `types` i `tickets` osobno; revoke działa per-key (typ vs ticket).
+- Weryfikacja live: symulacja + uruchomione testy potwierdzają propagację; w `~/.urirun/host-dashboard/unblock-ledger.json` istnieją wpisy typu (np. `wait-gate:waiting_node`).
+
+**Co wciąż może wymagać uwagi (poza tym mechanizmem):**
+- Inne przyczyny blokad autonomii (no_executor, drive_failed, koru stopped, brak agenta) — niezależne od ledgera unblock.
+- UI `/work` nadal nie oferuje wyboru zakresu przy "Odblokuj" (zawsze zapisuje typ + ticket; revoke pozwala selektywnie).
+- `grant_unblock_check` (API) wciąż używa starego `is_unblocked(ticket_id)` — tylko do query per-ID.
+
+Uruchom testy:
+```
+PYTHONPATH=urirun/adapters/python python -m pytest urirun-connector-work/tests/test_unblock_persist.py -q
+```
+
+Mechanizm "Odblokuj raz dla typu = trwałe dla podobnych ticketów" jest aktywny.
