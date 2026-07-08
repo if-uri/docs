@@ -25,6 +25,8 @@ is now the public documentation home for the ifURI organization.
 - `mcp.md` - MCP and A2A projection for LLM clients
 - `errors.md` - `error://` runtime errors, search, fix hints and ticketing
 - `host-node-lan.md` - operator guide for host/node communication across a LAN
+- `autonomous-work-unblock-status-2026-07-08.md` - current status of the
+  `/work` repeated-unblock issue and the remaining fix plan
 - `novnc-demo.md` - noVNC demo guide for the multi-computer URI flow
 - `project-structure-audit-2026-06-20.md` - historical repository map and
   refactor/test priorities

@@ -35,6 +35,11 @@ These files describe current behavior and should be kept in sync with code:
 - `URI_ECOSYSTEM_ATOMIZATION_AUDIT.md` - 2026-06-28 atomization snapshot. Use
   it as predecessor context; the 2026-06-29 quality audit supersedes it for
   documentation freshness and semcod-tooling status.
+- `HUMAN-ACTIONS.md` - the current human action checklist for the autonomy
+  frontier (secrets, node enrollment, policy grants); kept in sync with open
+  `waiting:*` tickets.
+- `todo.md` - the current if-uri hub TODO; connector/SDK backlog items are
+  checked off against repo state, not left as aspirational.
 
 ## Generated Snapshots
 
@@ -58,6 +63,13 @@ operational contract:
 - `docs/work-summary-*`.
 - `docs/project-structure-audit-*`.
 - `URIRUN_CONTRACT_REFACTORING_REPORT.md`.
+- `CAMERA-KSEF-PIPELINE-REPORT.md` - 2026-06-24 session index for the
+  camera/USB/OCR to KSeF invoice pipeline; the connectors and examples it
+  lists are current, the report itself is a point-in-time index, not living
+  documentation.
+- `RETROSPECTIVE.md` - 2026-06-24 lessons-learned pass; several of its "top 5"
+  items are already marked done in the file itself and should be checked
+  against current code before being cited as open work.
 - `urirun/docs/RELEASE-extracted-packages.md`.
 - old `CHANGELOG.md` sections and generated release fragments.
 - lower historical sections of `urirun/docs/URIRUN_PACKAGE_SPLIT_PLAN.md`.
