@@ -14,7 +14,7 @@ automatically by `make docs-lint`.
 | `LICENSE` | The project licence — **Apache-2.0** across the ecosystem. Pure website repos may omit it (a site is content, not a licensed library). |
 | `NOTICE` | Attribution required by Apache-2.0. Canonical line: `Copyright 2026 ifuri.com / Tom Sapletta - tom.sapletta.com`. |
 | `CONTRIBUTING.md` | How to contribute; points back to this standard. |
-| `TODO.md` | Recommended — the live backlog. |
+| `TODO.md` | Recommended — the live backlog: hand-curated, `[x]` items carry evidence (commit/file). A `prefact`-generated lint-issue dump satisfies `docs-lint --strict` but is not a backlog — see `docs/todo-consolidation-audit-2026-07-08.md`. |
 
 The `LICENSE` text stays verbatim Apache-2.0; the copyright owner lives in `NOTICE`
 (and in source headers as `# Author: Tom Sapletta · https://tom.sapletta.com`).

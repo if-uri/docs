@@ -62,6 +62,9 @@ operational contract:
 
 - `docs/work-summary-*`.
 - `docs/project-structure-audit-*`.
+- `docs/todo-consolidation-audit-2026-07-08.md` - point-in-time review of
+  every `TODO.md` in the hub (IFURI-208); the `repo-standards.md` TODO.md row
+  is the current rule it produced.
 - `URIRUN_CONTRACT_REFACTORING_REPORT.md`.
 - `CAMERA-KSEF-PIPELINE-REPORT.md` - 2026-06-24 session index for the
   camera/USB/OCR to KSeF invoice pipeline; the connectors and examples it
