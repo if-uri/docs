@@ -45,6 +45,9 @@ agent tool projection.
   restrictions are set, and how to read a node's live policy.
 - [noVNC LAN demo](novnc-demo.md) - URI commands drive real Chromium browsers
   inside noVNC desktops across the LAN.
+- [Signal KVM, LLM proxy and refactor plan (2026-07-09)](signal-kvm-llm-proxy-refactor-2026-07-09.md) -
+  IFURI-237 composer focus, `llm-urirun-com` proxy, API adapters, E2E results
+  and code refactor phases.
 - [Project structure audit](project-structure-audit-2026-06-20.md) -
   historical repository map, runtime boundary and refactor/test priorities.
 - [Logo](logo.md) - generated SVG logo assets and usage notes.

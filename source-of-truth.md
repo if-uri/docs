@@ -35,6 +35,11 @@ These files describe current behavior and should be kept in sync with code:
 - `URI_ECOSYSTEM_ATOMIZATION_AUDIT.md` - 2026-06-28 atomization snapshot. Use
   it as predecessor context; the 2026-06-29 quality audit supersedes it for
   documentation freshness and semcod-tooling status.
+- `docs/autonomous-work-unblock-status-2026-07-08.md` - `/work` repeated-unblock
+  issue status and fix plan.
+- `docs/signal-kvm-llm-proxy-refactor-2026-07-09.md` - Signal composer focus
+  (IFURI-237), `llm-urirun-com` proxy, API adapters, E2E results and refactor
+  plan (operational status until modules are extracted per that plan).
 - `HUMAN-ACTIONS.md` - the current human action checklist for the autonomy
   frontier (secrets, node enrollment, policy grants); kept in sync with open
   `waiting:*` tickets.
