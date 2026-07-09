@@ -212,6 +212,9 @@ gh repo view if-uri/llm-urirun-com --json visibility
 
 ## Koru headless drive — OpenRouter zamiast Claude (429)
 
+> **Kanoniczna dokumentacja koru:** `semcod/koru/docs/llm-provider-configuration.md`
+> (pełna matryca klient × provider × role LLM).
+
 ### Objaw
 
 W `.planfile/.koru/integration-actions.jsonl` powtarza się `client command failed` z:
