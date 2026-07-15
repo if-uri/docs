@@ -45,7 +45,7 @@ github.com **nie przekierowuje** surowego `git push origin master`. Jeśli ktoś
 zrobi push na `master`, GitHub go odrzuci z komunikatem (nie utworzy po cichu starej gałęzi).
 Dlatego:
 
-- pushuj zawsze na `main` (albo używaj `push.sh`, które samo normalizuje `master`→`main`),
+- pushuj zawsze na `main` (albo używaj `scripts/push.sh`, które samo normalizuje `master`→`main`),
 - najpierw napraw klon powyższym skryptem, potem pushuj.
 
 Pytania: pisz do Toma.
