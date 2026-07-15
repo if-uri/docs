@@ -1,0 +1,33 @@
+# docs | 6 func | 3f | 788L | python | 2026-07-14
+# generated in 0.00s
+
+HEALTH:
+  CC̄=8.3  critical=2 (limit:10)  dup=0  cycles=0
+
+ALERTS[3]:
+  !!! cc_exceeded      md = 27 (limit:15)
+  !!! high_fan_out     md = 20 (limit:10)
+  !   high_fan_out     main = 14 (limit:10)
+
+MODULES[9] (top by size):
+  M[planfile.yaml] 305L C:0 F:0 CC↑0 D:0 (yaml)
+  M[scripts/build_site.py] 103L C:0 F:3 CC↑27 D:0 (python)
+  M[prefact.yaml] 94L C:0 F:0 CC↑0 D:0 (yaml)
+  M[tree.txt] 92L C:0 F:0 CC↑0 D:0 (txt)
+  M[project.sh] 66L C:0 F:0 CC↑0 D:0 (shell)
+  M[scripts/check_site.py] 57L C:0 F:1 CC↑10 D:0 (python)
+  M[scripts/check_node_types.py] 47L C:0 F:2 CC↑9 D:0 (python)
+  M[scripts/deploy-plesk.sh] 14L C:0 F:0 CC↑0 D:0 (shell)
+  M[Makefile] 10L C:0 F:0 CC↑0 D:0 ()
+  LANGS: python:3/yaml:2/shell:2/other:1/txt:1
+
+HOTSPOTS[2]:
+  ★ md fan=20  // Orchestrates 20 calls
+  ★ main fan=14  // Orchestrates 14 calls
+
+REFACTOR[2]:
+  [1] H/L Split md (CC=27)
+  [2] M/M Reduce md fan-out (currently 20)
+
+EVOLUTION:
+  2026-07-14 CC̄=8.3 crit=2 788L // Automated analysis

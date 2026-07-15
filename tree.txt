@@ -1,0 +1,92 @@
+.
+├── adopt-as-uri.md
+├── app.doql.less
+├── architecture.md
+├── autonomous-work-unblock-status-2026-07-08.md
+├── CHANGELOG.md
+├── commands.md
+├── connector-authoring.md
+├── connectors.md
+├── CONTRIBUTING.md
+├── errors.md
+├── generating-connectors.md
+├── getting-started.md
+├── host-node-lan.md
+├── index.md
+├── LICENSE
+├── logo.md
+├── Makefile
+├── mcp.md
+├── naming.md
+├── node-types.md
+├── NOTICE
+├── novnc-demo.md
+├── openapi.md
+├── planfile.yaml
+├── prefact.yaml
+├── project.sh
+├── project-structure-audit-2026-06-20.md
+├── quality-and-docs-audit-2026-06-29.md
+├── README.md
+├── registry-and-bindings.md
+├── release-checklist.md
+├── repo-standards.md
+├── roadmap.md
+├── scripts
+│   ├── build_site.py
+│   ├── check_node_types.py
+│   ├── check_site.py
+│   └── deploy-plesk.sh
+├── secrets.md
+├── security-and-policy.md
+├── signal-kvm-llm-proxy-refactor-2026-07-09.md
+├── _site
+│   ├── adopt-as-uri.html
+│   ├── architecture.html
+│   ├── autonomous-work-unblock-status-2026-07-08.html
+│   ├── commands.html
+│   ├── connector-authoring.html
+│   ├── connectors.html
+│   ├── CONTRIBUTING.html
+│   ├── copy.js
+│   ├── errors.html
+│   ├── generating-connectors.html
+│   ├── getting-started.html
+│   ├── host-node-lan.html
+│   ├── index.html
+│   ├── logo.html
+│   ├── mcp.html
+│   ├── naming.html
+│   ├── node-types.html
+│   ├── novnc-demo.html
+│   ├── openapi.html
+│   ├── project-structure-audit-2026-06-20.html
+│   ├── quality-and-docs-audit-2026-06-29.html
+│   ├── registry-and-bindings.html
+│   ├── release-checklist.html
+│   ├── repo-standards.html
+│   ├── roadmap.html
+│   ├── secrets.html
+│   ├── security-and-policy.html
+│   ├── source-of-truth.html
+│   ├── style.css
+│   ├── todo-consolidation-audit-2026-07-08.html
+│   ├── transports.html
+│   ├── upgrade-0.4.html
+│   ├── work-summary-2026-06-20.html
+│   └── work-summary-2026-06-21.html
+├── source-of-truth.md
+├── SUMD.md
+├── SUMR.md
+├── testql-scenarios
+├── todo-consolidation-audit-2026-07-08.md
+├── TODO.md
+├── transports.md
+├── tree.sh
+├── tree.txt
+├── upgrade-0.4.md
+├── VERSION
+├── work-summary-2026-06-20.md
+└── work-summary-2026-06-21.md
+
+4 directories, 86 files

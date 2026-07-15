@@ -1,0 +1,62 @@
+source: code2llm
+# generated in 0.00s
+schema: code2llm.planfile_tickets.v1
+project_root: /home/tom/github/if-uri/docs
+tickets:
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: scripts.build_site.md (CC=27)'
+  description: 'code2llm reports `scripts.build_site.md` at `scripts/build_site.py:13`
+    with cyclomatic complexity 27 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - scripts/build_site.py
+  dedupe_key: code2llm:cc:scripts/build_site.py:scripts.build_site.md
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `scripts/check_site.py:22`.
+
+
+    Function ''main'' is oversized: CC=10, fan-out=14, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - scripts/check_site.py
+  dedupe_key: 'code2llm:smell:god_function:scripts/check_site.py:22:God Function:
+    main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `scripts/check_node_types.py:27`.
+
+
+    Function ''main'' is oversized: CC=9, fan-out=5, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - scripts/check_node_types.py
+  dedupe_key: 'code2llm:smell:god_function:scripts/check_node_types.py:27:God Function:
+    main'
+applied: []
+skipped: []

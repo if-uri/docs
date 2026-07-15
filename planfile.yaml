@@ -1,0 +1,305 @@
+name: Code Quality Improvement
+project_name: ''
+project_type: prefactoring
+domain: dev-tools
+goal: Improve code quality using prefact
+goals:
+- Fix all prefact-detected issues
+- Improve code maintainability
+- Ensure consistent code style
+quality_gates:
+- metric: Prefact Issues
+  threshold: '0'
+sprints:
+- id: sprint-1
+  name: Code Quality Improvements
+  duration: 2 weeks
+  objectives:
+  - Fix code quality issues
+  task_patterns:
+  - id: ticket-08ad3628
+    name: Fix ast-print-statements issues
+    description: Resolve 4 ast-print-statements issues in scripts/check_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/check_site.py
+    rule_id: ast-print-statements
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fbb930d0
+    name: Fix ruff-print-statements issues
+    description: Resolve 4 ruff-print-statements issues in scripts/check_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/check_site.py
+    rule_id: ruff-print-statements
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3503d95b
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in scripts/check_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_site.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a510713e
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in scripts/check_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_site.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-63a4630f
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_node_types.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5a399263
+    name: Fix ast-print-statements issues
+    description: Resolve 4 ast-print-statements issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/check_node_types.py
+    rule_id: ast-print-statements
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3509b2b6
+    name: Fix ruff-print-statements issues
+    description: Resolve 4 ruff-print-statements issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/check_node_types.py
+    rule_id: ruff-print-statements
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a5e3cc28
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 2 ruff-sorted-imports issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_node_types.py
+    rule_id: ruff-sorted-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6b4d42f3
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_node_types.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a43228ab
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in scripts/check_node_types.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/check_node_types.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a05af845
+    name: Fix ast-unused-imports issues
+    description: Resolve 1 ast-unused-imports issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: ast-unused-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0a2df3da
+    name: Fix ast-string-concat issues
+    description: Resolve 11 ast-string-concat issues in scripts/build_site.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - scripts/build_site.py
+    rule_id: ast-string-concat
+    count: 11
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-72011ab4
+    name: Fix ast-print-statements issues
+    description: Resolve 1 ast-print-statements issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: ast-print-statements
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b4ea7a1c
+    name: Fix ast-missing-return-type issues
+    description: Resolve 4 ast-missing-return-type issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/build_site.py
+    rule_id: ast-missing-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2aeccd44
+    name: Fix ruff-unused-imports issues
+    description: Resolve 1 ruff-unused-imports issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: ruff-unused-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d0c121bb
+    name: Fix ruff-print-statements issues
+    description: Resolve 1 ruff-print-statements issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: ruff-print-statements
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5b988792
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1ec01c6e
+    name: Fix smart-return-type issues
+    description: Resolve 4 smart-return-type issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/build_site.py
+    rule_id: smart-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a9705ec8
+    name: Fix string-concat-fstring issues
+    description: Resolve 26 string-concat-fstring issues in scripts/build_site.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - scripts/build_site.py
+    rule_id: string-concat-fstring
+    count: 26
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-edc668f9
+    name: Fix unused-imports issues
+    description: Resolve 0 unused-imports issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: unused-imports
+    count: 0
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-293a1472
+    name: Fix string-formatting issues
+    description: Resolve 0 string-formatting issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: string-formatting
+    count: 0
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e7ad6bdb
+    name: Fix import-optimization issues
+    description: Resolve 0 import-optimization issues in scripts/build_site.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/build_site.py
+    rule_id: import-optimization
+    count: 0
+    model_hints:
+      planning: balanced
+      implementation: balanced

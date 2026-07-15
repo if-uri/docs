@@ -1,0 +1,36 @@
+# docs | 9f 788L | txt:1,shell:2,python:3,yaml:2 | 2026-07-14
+# generated in 0.00s
+# stats: 6 func | 0 cls | 9 mod | CC̄=8.3 | critical:1 | cycles:0
+# alerts[3]: CC md=27; fan-out md=20; fan-out main=14
+# hotspots[4]: md fan=20; main fan=14; page fan=5; main fan=5
+# evolution: CC̄ 0.0→8.3 (regressed +8.3)
+# Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
+M[9]:
+  Makefile,10
+  planfile.yaml,305
+  prefact.yaml,94
+  project.sh,66
+  scripts/build_site.py,103
+  scripts/check_node_types.py,47
+  scripts/check_site.py,57
+  scripts/deploy-plesk.sh,14
+  tree.txt,92
+D:
+  scripts/build_site.py:
+    e: md,md_to_html_links,page
+    md(text)
+    md_to_html_links(s)
+    page(slug)
+  scripts/check_site.py:
+    e: main
+    main()
+  scripts/check_node_types.py:
+    e: _load_registry_ids,main
+    _load_registry_ids()
+    main()
+  Makefile:
+  tree.txt:
+  project.sh:
+  scripts/deploy-plesk.sh:
+  planfile.yaml:
+  prefact.yaml:

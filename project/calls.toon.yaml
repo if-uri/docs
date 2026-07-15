@@ -1,0 +1,30 @@
+# code2llm call graph | /home/tom/github/if-uri/docs
+# generated in 0.00s
+# nodes: 5 | edges: 3 | modules: 2
+# CC̄=8.3
+
+HUBS[20]:
+  scripts.build_site.md
+    CC=27  in:1  out:60  total:61
+  scripts.check_node_types.main
+    CC=9  in:0  out:11  total:11
+  scripts.build_site.page
+    CC=1  in:0  out:8  total:8
+  scripts.check_node_types._load_registry_ids
+    CC=2  in:1  out:3  total:4
+  scripts.build_site.md_to_html_links
+    CC=1  in:1  out:1  total:2
+
+MODULES:
+  scripts.build_site  [3 funcs]
+    md  CC=27  out:60
+    md_to_html_links  CC=1  out:1
+    page  CC=1  out:8
+  scripts.check_node_types  [2 funcs]
+    _load_registry_ids  CC=2  out:3
+    main  CC=9  out:11
+
+EDGES:
+  scripts.build_site.page → scripts.build_site.md_to_html_links
+  scripts.build_site.page → scripts.build_site.md
+  scripts.check_node_types.main → scripts.check_node_types._load_registry_ids

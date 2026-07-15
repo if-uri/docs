@@ -1,0 +1,64 @@
+project: /home/tom/github/if-uri/docs
+generated_from: code2llm call graph analysis
+stats:
+  total_nodes: 5
+  total_edges: 3
+  modules_count: 2
+nodes:
+  scripts.build_site.page:
+    name: page
+    module: scripts.build_site
+    line: 58
+    cyclomatic_complexity: 1
+    calls_out: 8
+    calls_in: 0
+  scripts.check_node_types._load_registry_ids:
+    name: _load_registry_ids
+    module: scripts.check_node_types
+    line: 14
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  scripts.check_node_types.main:
+    name: main
+    module: scripts.check_node_types
+    line: 27
+    cyclomatic_complexity: 9
+    calls_out: 11
+    calls_in: 0
+  scripts.build_site.md:
+    name: md
+    module: scripts.build_site
+    line: 13
+    cyclomatic_complexity: 27
+    calls_out: 60
+    calls_in: 1
+  scripts.build_site.md_to_html_links:
+    name: md_to_html_links
+    module: scripts.build_site
+    line: 47
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+edges:
+- caller: scripts.build_site.page
+  callee: scripts.build_site.md_to_html_links
+  call_type: resolved
+- caller: scripts.build_site.page
+  callee: scripts.build_site.md
+  call_type: resolved
+- caller: scripts.check_node_types.main
+  callee: scripts.check_node_types._load_registry_ids
+  call_type: resolved
+modules:
+  scripts.build_site:
+  - scripts.build_site.md
+  - scripts.build_site.md_to_html_links
+  - scripts.build_site.page
+  scripts.check_node_types:
+  - scripts.check_node_types._load_registry_ids
+  - scripts.check_node_types.main
+entry_points:
+- scripts.build_site.page
+- scripts.check_node_types.main
+- scripts.check_site.main

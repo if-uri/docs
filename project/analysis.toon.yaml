@@ -1,0 +1,38 @@
+# code2llm | 9f 788L | python:3,shell:2,yaml:2,txt:1 | 2026-07-14
+# generated in 0.00s
+# CC̅=8.3 | critical:1/6 | dups:0 | cycles:0
+
+HEALTH[1]:
+  🟡 CC    md CC=27 (limit:15)
+
+REFACTOR[1]:
+  1. split 1 high-CC methods  (CC>15)
+
+PIPELINES[3]:
+  [1] Src [page]: page → md_to_html_links
+      PURITY: 100% pure
+  [2] Src [main]: main
+      PURITY: 100% pure
+  [3] Src [main]: main → _load_registry_ids
+      PURITY: 100% pure
+
+LAYERS:
+  scripts/                        CC̄=8.3    ←in:0  →out:0
+  │ !! build_site                 103L  0C    3m  CC=27     ←0
+  │ check_site                  57L  0C    1m  CC=10     ←0
+  │ check_node_types            47L  0C    2m  CC=9      ←0
+  │ deploy-plesk.sh             14L  0C    0m  CC=0.0    ←0
+  │
+  ./                              CC̄=0.0    ←in:0  →out:0
+  │ planfile.yaml              305L  0C    0m  CC=0.0    ←0
+  │ prefact.yaml                94L  0C    0m  CC=0.0    ←0
+  │ tree.txt                    92L  0C    0m  CC=0.0    ←0
+  │ project.sh                  66L  0C    0m  CC=0.0    ←0
+  │ Makefile                    10L  0C    0m  CC=0.0    ←0
+  │
+
+COUPLING: no cross-package imports detected
+
+EXTERNAL:
+  validation: run `vallm batch .` → validation.toon
+  duplication: run `redup scan .` → duplication.toon

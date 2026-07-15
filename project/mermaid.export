@@ -1,0 +1,22 @@
+flowchart TD
+%% generated in 0.00s
+    subgraph scripts__build_site
+        scripts__build_site__md{{md CC=27}}
+        scripts__build_site__md_to_html_links["md_to_html_links"]
+        scripts__build_site__page["page"]
+    end
+    subgraph scripts__check_node_types
+        scripts__check_node_types___load_registry_ids["_load_registry_ids"]
+        scripts__check_node_types__main("main CC=9")
+    end
+    subgraph scripts__check_site
+        scripts__check_site__main("main CC=10")
+    end
+    scripts__build_site__page --> scripts__build_site__md_to_html_links
+    scripts__build_site__page --> scripts__build_site__md
+    scripts__check_node_types__main --> scripts__check_node_types___load_registry_ids
+
+    classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
+    class scripts__build_site__md highCC
+    class scripts__check_site__main,scripts__check_node_types__main medCC

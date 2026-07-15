@@ -4,6 +4,32 @@ This changelog records source documentation changes for the public docs site.
 Historical implementation reports are linked from the index and source-of-truth
 pages instead of being duplicated here.
 
+## [Unreleased] - 2026-07-14
+
+### Fixed
+- Fix ast-print-statements issues (ticket-08ad3628)
+- Fix ruff-print-statements issues (ticket-fbb930d0)
+- Fix ai-boilerplate issues (ticket-3503d95b)
+- Fix import-optimization issues (ticket-a510713e)
+- Fix ast-unused-imports issues (ticket-63a4630f)
+- Fix ast-print-statements issues (ticket-5a399263)
+- Fix ruff-print-statements issues (ticket-3509b2b6)
+- Fix ruff-sorted-imports issues (ticket-a5e3cc28)
+- Fix ai-boilerplate issues (ticket-6b4d42f3)
+- Fix import-optimization issues (ticket-a43228ab)
+- Fix ast-unused-imports issues (ticket-a05af845)
+- Fix ast-string-concat issues (ticket-0a2df3da)
+- Fix ast-print-statements issues (ticket-72011ab4)
+- Fix ast-missing-return-type issues (ticket-b4ea7a1c)
+- Fix ruff-unused-imports issues (ticket-2aeccd44)
+- Fix ruff-print-statements issues (ticket-d0c121bb)
+- Fix ruff-sorted-imports issues (ticket-5b988792)
+- Fix smart-return-type issues (ticket-1ec01c6e)
+- Fix string-concat-fstring issues (ticket-a9705ec8)
+- Fix unused-imports issues (ticket-edc668f9)
+- Fix string-formatting issues (ticket-293a1472)
+- Fix import-optimization issues (ticket-e7ad6bdb)
+
 ## [Unreleased]
 
 Current unreleased documentation updates are grouped below.
