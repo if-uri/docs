@@ -8,7 +8,7 @@
 
 Prace z 2026-07-08–09 obejmowały trzy linie:
 
-1. **Zewnętrzne API** — repozytoria adapterów pod `if-uri/` (`urirun-api-mcp`, `urirun-api-a2a`) oraz proxy `llm-urirun-com`.
+1. **Zewnętrzne API** — connectory protokołów pod `urirun-connectors/` (`urirun-connector-mcp`, `urirun-connector-a2a`) oraz proxy `llm-urirun-com`.
 2. **Proxy LLM** — `llm.urirun.com` jako cienki HTTPS proxy do OpenRouter z pass-through auth i limitem IP.
 3. **Signal E2E** — tickety `IFURI-235` / `IFURI-236` / `IFURI-237` na lenovo (KVM + schema gates + wysyłka do Mateusza).
 
@@ -22,8 +22,8 @@ Ten dokument zbiera **wnioski operacyjne** i **plan refaktoryzacji kodu** wynika
 
 | Repo | Rola | Widoczność |
 |------|------|------------|
-| `urirun-api-mcp` | MCP adapter (stdio JSON-RPC, `/routes` → tools, `/run`) | public |
-| `urirun-api-a2a` | A2A adapter (agent card + `/invoke`) | public |
+| `urirun-connectors/urirun-connector-mcp` | MCP connector (stdio JSON-RPC, `/routes` → tools, `/run`) | public |
+| `urirun-connectors/urirun-connector-a2a` | A2A connector (agent card + `/invoke`) | public |
 | `llm-urirun-com` | Deployment `https://llm.urirun.com` | **private** |
 
 Lokalne ścieżki: `/home/tom/github/if-uri/<repo>/`.
