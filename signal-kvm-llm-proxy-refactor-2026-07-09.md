@@ -1,10 +1,14 @@
 # Signal KVM, LLM proxy i API adapters — wnioski i plan refaktoryzacji (2026-07-09)
 
+> Aktualizacja 2026-07-22: zadanie C1 zostało zakończone przez wycofanie
+> bajt-w-bajt identycznego `urirun-api-rest`. Jedynym źródłem i repozytorium
+> wdrożeniowym proxy PHP jest teraz `llm-urirun-com`.
+
 ## Kontekst
 
 Prace z 2026-07-08–09 obejmowały trzy linie:
 
-1. **Zewnętrzne API** — repozytoria adapterów pod `if-uri/` (`urirun-api-mcp`, `urirun-api-a2a`, `urirun-api-rest`, `llm-urirun-com`).
+1. **Zewnętrzne API** — repozytoria adapterów pod `if-uri/` (`urirun-api-mcp`, `urirun-api-a2a`) oraz proxy `llm-urirun-com`.
 2. **Proxy LLM** — `llm.urirun.com` jako cienki HTTPS proxy do OpenRouter z pass-through auth i limitem IP.
 3. **Signal E2E** — tickety `IFURI-235` / `IFURI-236` / `IFURI-237` na lenovo (KVM + schema gates + wysyłka do Mateusza).
 
@@ -20,12 +24,11 @@ Ten dokument zbiera **wnioski operacyjne** i **plan refaktoryzacji kodu** wynika
 |------|------|------------|
 | `urirun-api-mcp` | MCP adapter (stdio JSON-RPC, `/routes` → tools, `/run`) | public |
 | `urirun-api-a2a` | A2A adapter (agent card + `/invoke`) | public |
-| `urirun-api-rest` | REST / OpenAI-compatible proxy (PHP) | public |
 | `llm-urirun-com` | Deployment `https://llm.urirun.com` | **private** |
 
 Lokalne ścieżki: `/home/tom/github/if-uri/<repo>/`.
 
-### Proxy `llm-urirun-com` (i kopia w `urirun-api-rest`)
+### Proxy `llm-urirun-com`
 
 - `proxy_lib.php` — auth, rate limit, helpery HTTP.
 - `index.php` — cienki entrypoint.
@@ -127,7 +130,7 @@ Po udanym preflight wysyłka powinna być **deterministyczna** (`preflight-type-
 
 ### 6. Duplikacja proxy PHP
 
-`llm-urirun-com` i `urirun-api-rest` mają identyczny `proxy_lib.php` + `index.php` — do scalenia.
+Duplikacja z `urirun-api-rest` została usunięta; `llm-urirun-com` jest jedynym właścicielem implementacji.
 
 ### 7. `goal.py` jest nadal god-module
 
@@ -160,7 +163,7 @@ Logika Signal (preflight, composer, send, LLM loop, triple-LLM prep) miesza się
 
 | # | Zadanie | Opis |
 |---|---------|------|
-| C1 | Wspólny pakiet PHP `urirun-llm-proxy` lub submodule | Jedna kopia `proxy_lib.php` dla `llm-urirun-com` i `urirun-api-rest` |
+| C1 | **Zakończone:** wycofać identyczne `urirun-api-rest` | Jedna implementacja w `llm-urirun-com` |
 | C2 | nginx/vhost + deploy doc dla `llm.urirun.com` | `llm-urirun-com/docs/deploy.md` |
 | C3 | `env_loader.llm_api_base()` jako single entry | Usunąć rozproszone `_litellm_call_kwargs` kopie |
 | C4 | Test integracyjny proxy (curl) w CI | `tests/proxy_integration.sh` |
@@ -179,7 +182,7 @@ Logika Signal (preflight, composer, send, LLM loop, triple-LLM prep) miesza się
 | # | Zadanie | Opis |
 |---|---------|------|
 | E1 | `.gitignore` `__pycache__` w mcp/a2a | Higiena repo |
-| E2 | OpenAPI spec dla `urirun-api-rest` | `openapi.yaml` |
+| E2 | OpenAPI spec dla `llm-urirun-com` | `openapi.yaml` |
 | E3 | Wspólny `URIRUN_RUNTIME_URL` w `.env.example` wszystkich adapterów | Spójna konfiguracja |
 
 ---
@@ -188,7 +191,7 @@ Logika Signal (preflight, composer, send, LLM loop, triple-LLM prep) miesza się
 
 1. **A1 + A2** — `signal_compose.py` + `_match_center` w jednym miejscu; regression tests przeniesione z `test_signal_scripted.py`.
 2. **B1** — `focus-compose` URI na lenovo; IFURI-237 E2E woła jeden URI zamiast Python orchestration.
-3. **C1** — deduplikacja proxy PHP; `llm-urirun-com` pozostaje private deployment repo.
+3. **C1 — zakończone** — `llm-urirun-com` pozostaje private deployment repo.
 
 ---
 
